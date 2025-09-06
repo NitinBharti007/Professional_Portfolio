@@ -1,7 +1,5 @@
 import { useState } from 'react';
-import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
-import { Button } from '@/components/ui/button';
-import { Badge } from '@/components/ui/badge';
+import { Mail, Phone, MapPin, Linkedin, Send, CheckCircle, Github, ExternalLink } from 'lucide-react';
 import { personalInfo } from '@/data/personalInfo';
 
 const Contact = () => {
@@ -28,28 +26,28 @@ const Contact = () => {
 
   const contactMethods = [
     {
-      icon: '📧',
+      icon: Mail,
       title: 'Email',
       value: personalInfo.email,
       href: `mailto:${personalInfo.email}`,
       description: 'Send me an email anytime'
     },
     {
-      icon: '📱',
+      icon: Phone,
       title: 'Phone',
       value: personalInfo.phone,
       href: `tel:${personalInfo.phone}`,
       description: 'Call me for urgent matters'
     },
     {
-      icon: '📍',
+      icon: MapPin,
       title: 'Location',
       value: personalInfo.location,
       href: '#',
       description: 'Based in Noida, India'
     },
     {
-      icon: '💼',
+      icon: Linkedin,
       title: 'LinkedIn',
       value: 'Connect with me',
       href: '#',
@@ -58,152 +56,184 @@ const Contact = () => {
   ];
 
   return (
-    <section id="contact" className="py-20 bg-muted/30">
-      <div className="container mx-auto px-4">
-        <div className="max-w-6xl mx-auto">
+    <section id="contact" className="py-12 sm:py-16 lg:py-20 bg-white dark:bg-gray-900 relative overflow-hidden">
+      {/* Background Pattern - Matching other sections */}
+      {/* <div className="absolute inset-0 bg-gradient-to-br from-emerald-50/50 to-cyan-50/50 dark:from-emerald-900/10 dark:to-cyan-900/10"></div>
+      <div className="absolute top-0 left-0 w-72 h-72 bg-gradient-to-br from-emerald-200/20 to-cyan-200/20 dark:from-emerald-700/20 dark:to-cyan-700/20 rounded-full -translate-x-36 -translate-y-36"></div>
+      <div className="absolute bottom-0 right-0 w-96 h-96 bg-gradient-to-tl from-emerald-200/20 to-cyan-200/20 dark:from-emerald-700/20 dark:to-cyan-700/20 rounded-full translate-x-48 translate-y-48"></div>
+      <div className="absolute top-1/2 left-1/2 w-64 h-64 bg-gradient-to-r from-emerald-200/10 to-cyan-200/10 dark:from-emerald-700/10 dark:to-cyan-700/10 rounded-full -translate-x-32 -translate-y-32 blur-3xl"></div> */}
+
+      <div className="container mx-auto px-4 sm:px-6 md:px-8 relative z-10">
+        <div className="max-w-7xl mx-auto">
           {/* Section Header */}
-          <div className="text-center mb-16">
-            <Badge variant="outline" className="mb-4">
+          <div className="text-center mb-8 sm:mb-12 lg:mb-16">
+            <div className="inline-flex items-center px-4 py-2 bg-emerald-100 dark:bg-emerald-900/30 text-emerald-700 dark:text-emerald-300 text-sm font-medium rounded-full mb-4 sm:mb-6 border border-emerald-200 dark:border-emerald-700">
+              <span className="w-2 h-2 bg-emerald-500 rounded-full mr-2 animate-pulse"></span>
               Get In Touch
-            </Badge>
-            <h2 className="text-3xl md:text-4xl font-bold mb-4">
+            </div>
+            <h2 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold mb-2 sm:mb-3 bg-gradient-to-r from-white to-emerald-400 dark:from-gray-100 dark:to-emerald-400 bg-clip-text text-transparent leading-normal">
               Let's Work Together
             </h2>
-            <p className="text-lg text-muted-foreground max-w-2xl mx-auto">
+            <p className="text-base sm:text-lg md:text-xl text-gray-600 dark:text-gray-300 max-w-3xl mx-auto leading-relaxed px-4">
               Have a project in mind or want to discuss opportunities? I'd love to hear from you.
             </p>
           </div>
 
-          <div className="grid grid-cols-1 lg:grid-cols-2 gap-12">
+          <div className="grid grid-cols-1 xl:grid-cols-2 gap-6 sm:gap-8 lg:gap-12">
             {/* Contact Information */}
-            <div className="space-y-8">
+            <div className="space-y-4 sm:space-y-6">
               <div>
-                <h3 className="text-2xl font-bold mb-4">Let's Connect</h3>
-                <p className="text-muted-foreground mb-6">
+                <h3 className="text-xl sm:text-2xl lg:text-3xl font-bold text-gray-900 dark:text-white mb-3 sm:mb-4">Let's Connect</h3>
+                <p className="text-sm sm:text-base text-gray-600 dark:text-gray-300 mb-4 sm:mb-6 leading-relaxed">
                   I'm always interested in new opportunities and exciting projects. 
                   Whether you have a question or just want to say hi, feel free to reach out!
                 </p>
               </div>
 
               {/* Contact Methods */}
-              <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
-                {contactMethods.map((method, index) => (
-                  <Card key={index} className="hover:shadow-md transition-shadow">
-                    <CardContent className="p-4">
-                      <div className="flex items-start space-x-3">
-                        <div className="text-2xl">{method.icon}</div>
-                        <div className="flex-1">
-                          <h4 className="font-semibold text-sm">{method.title}</h4>
-                          <a 
-                            href={method.href}
-                            className="text-primary hover:underline text-sm block"
-                          >
-                            {method.value}
-                          </a>
-                          <p className="text-xs text-muted-foreground mt-1">
-                            {method.description}
-                          </p>
+              <div className="grid grid-cols-2 lg:grid-cols-2 gap-3 sm:gap-4 lg:gap-6">
+                {contactMethods.map((method, index) => {
+                  const IconComponent = method.icon;
+                  return (
+                    <div key={index} className="group relative">
+                      {/* Card Glow Effect */}
+                      <div className="absolute -inset-0.5 bg-gradient-to-r from-emerald-500 to-cyan-500 rounded-xl blur opacity-0 group-hover:opacity-20 transition duration-500"></div>
+                      
+                      <div className="relative bg-white dark:bg-gray-800 p-3 sm:p-4 lg:p-6 rounded-lg sm:rounded-xl shadow-lg hover:shadow-xl transition-all duration-300 border border-gray-100 dark:border-gray-700 hover:border-emerald-200 dark:hover:border-emerald-700 overflow-hidden h-full">
+                        <div className="flex items-start space-x-2 sm:space-x-3 lg:space-x-4">
+                          <div className="w-7 h-7 sm:w-8 sm:h-8 lg:w-10 lg:h-10 bg-emerald-100 dark:bg-emerald-900/30 rounded-lg sm:rounded-xl flex items-center justify-center group-hover:scale-110 transition-transform duration-300 flex-shrink-0">
+                            <IconComponent className="w-3.5 h-3.5 sm:w-4 sm:h-4 lg:w-5 lg:h-5 text-emerald-600 dark:text-emerald-400" />
+                          </div>
+                          <div className="flex-1 min-w-0">
+                            <h4 className="font-semibold text-xs sm:text-sm lg:text-base text-gray-900 dark:text-white mb-1">{method.title}</h4>
+                            <a 
+                              href={method.href}
+                              className="text-emerald-600 dark:text-emerald-400 hover:text-emerald-700 dark:hover:text-emerald-300 text-xs sm:text-sm lg:text-base block mb-1 transition-colors break-all"
+                            >
+                              {method.value}
+                            </a>
+                            <p className="text-xs sm:text-sm text-gray-500 dark:text-gray-400 leading-tight">
+                              {method.description}
+                            </p>
+                          </div>
                         </div>
                       </div>
-                    </CardContent>
-                  </Card>
-                ))}
+                    </div>
+                  );
+                })}
               </div>
 
               {/* Availability Status */}
-              <Card>
-                <CardContent className="p-6">
-                  <div className="flex items-center space-x-3">
-                    <div className="w-3 h-3 bg-green-500 rounded-full animate-pulse"></div>
-                    <div>
-                      <h4 className="font-semibold">Available for Work</h4>
-                      <p className="text-sm text-muted-foreground">
+              <div className="group relative">
+                <div className="absolute -inset-0.5 bg-gradient-to-r from-emerald-500 to-cyan-500 rounded-xl blur opacity-0 group-hover:opacity-20 transition duration-500"></div>
+                
+                <div className="relative bg-white dark:bg-gray-800 p-3 sm:p-4 lg:p-6 rounded-lg sm:rounded-xl shadow-lg hover:shadow-xl transition-all duration-300 border border-gray-100 dark:border-gray-700 hover:border-emerald-200 dark:hover:border-emerald-700 overflow-hidden">
+                  <div className="flex items-center space-x-2 sm:space-x-3 lg:space-x-4">
+                    <div className="w-7 h-7 sm:w-8 sm:h-8 lg:w-10 lg:h-10 bg-emerald-100 dark:bg-emerald-900/30 rounded-lg sm:rounded-xl flex items-center justify-center flex-shrink-0">
+                      <CheckCircle className="w-3.5 h-3.5 sm:w-4 sm:h-4 lg:w-5 lg:h-5 text-emerald-600 dark:text-emerald-400" />
+                    </div>
+                    <div className="flex-1 min-w-0">
+                      <h4 className="font-semibold text-xs sm:text-sm lg:text-base text-gray-900 dark:text-white mb-1">Available for Work</h4>
+                      <p className="text-xs sm:text-sm text-gray-500 dark:text-gray-400 leading-tight">
                         Open to full-time positions, freelance projects, and collaborations
                       </p>
                     </div>
                   </div>
-                </CardContent>
-              </Card>
+                </div>
+              </div>
             </div>
 
             {/* Contact Form */}
-            <Card>
-              <CardHeader>
-                <CardTitle>Send me a message</CardTitle>
-              </CardHeader>
-              <CardContent>
-                <form onSubmit={handleSubmit} className="space-y-4">
-                  <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+            <div className="group relative h-full">
+              <div className="absolute -inset-0.5 bg-gradient-to-r from-emerald-500 to-cyan-500 rounded-xl blur opacity-0 group-hover:opacity-20 transition duration-500"></div>
+              
+              <div className="relative bg-white dark:bg-gray-800 p-3 sm:p-4 lg:p-6 rounded-lg sm:rounded-xl shadow-lg hover:shadow-xl transition-all duration-300 border border-gray-100 dark:border-gray-700 hover:border-emerald-200 dark:hover:border-emerald-700 overflow-hidden h-full flex flex-col">
+                <div className="mb-2 sm:mb-3 lg:mb-4">
+                  <h3 className="text-base sm:text-lg lg:text-xl font-bold text-gray-900 dark:text-white mb-1 sm:mb-2">Send me a message</h3>
+                  <p className="text-gray-600 dark:text-gray-300 text-xs sm:text-sm">
+                    Fill out the form below and I'll get back to you as soon as possible.
+                  </p>
+                </div>
+
+                <form onSubmit={handleSubmit} className="space-y-2 sm:space-y-3 flex-1 flex flex-col">
+                  <div className="flex-1 space-y-2 sm:space-y-3">
+                    <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 sm:gap-4">
+                      <div>
+                        <label htmlFor="name" className="block text-xs sm:text-sm font-medium text-gray-700 dark:text-gray-300 mb-1 sm:mb-2">
+                          Name <span className="text-red-500">*</span>
+                        </label>
+                        <input
+                          type="text"
+                          id="name"
+                          name="name"
+                          value={formData.name}
+                          onChange={handleInputChange}
+                          required
+                          className="w-full px-3 py-2 border border-gray-200 dark:border-gray-600 rounded-lg bg-white dark:bg-gray-700 text-xs sm:text-sm text-gray-900 dark:text-white focus:outline-none focus:ring-2 focus:ring-emerald-500 focus:border-transparent transition-colors"
+                          placeholder="Your name"
+                        />
+                      </div>
+                      <div>
+                        <label htmlFor="email" className="block text-xs sm:text-sm font-medium text-gray-700 dark:text-gray-300 mb-1 sm:mb-2">
+                          Email <span className="text-red-500">*</span>
+                        </label>
+                        <input
+                          type="email"
+                          id="email"
+                          name="email"
+                          value={formData.email}
+                          onChange={handleInputChange}
+                          required
+                          className="w-full px-3 py-2 border border-gray-200 dark:border-gray-600 rounded-lg bg-white dark:bg-gray-700 text-xs sm:text-sm text-gray-900 dark:text-white focus:outline-none focus:ring-2 focus:ring-emerald-500 focus:border-transparent transition-colors"
+                          placeholder="your.email@example.com"
+                        />
+                      </div>
+                    </div>
+
                     <div>
-                      <label htmlFor="name" className="block text-sm font-medium mb-2">
-                        Name *
+                      <label htmlFor="subject" className="block text-xs sm:text-sm font-medium text-gray-700 dark:text-gray-300 mb-1 sm:mb-2">
+                        Subject <span className="text-red-500">*</span>
                       </label>
                       <input
                         type="text"
-                        id="name"
-                        name="name"
-                        value={formData.name}
+                        id="subject"
+                        name="subject"
+                        value={formData.subject}
                         onChange={handleInputChange}
                         required
-                        className="w-full px-3 py-2 border border-input rounded-md bg-background text-sm focus:outline-none focus:ring-2 focus:ring-ring focus:border-transparent"
-                        placeholder="Your name"
+                        className="w-full px-3 py-2 border border-gray-200 dark:border-gray-600 rounded-lg bg-white dark:bg-gray-700 text-xs sm:text-sm text-gray-900 dark:text-white focus:outline-none focus:ring-2 focus:ring-emerald-500 focus:border-transparent transition-colors"
+                        placeholder="What's this about?"
                       />
                     </div>
+
                     <div>
-                      <label htmlFor="email" className="block text-sm font-medium mb-2">
-                        Email *
+                      <label htmlFor="message" className="block text-xs sm:text-sm font-medium text-gray-700 dark:text-gray-300 mb-1 sm:mb-2">
+                        Message <span className="text-red-500">*</span>
                       </label>
-                      <input
-                        type="email"
-                        id="email"
-                        name="email"
-                        value={formData.email}
+                      <textarea
+                        id="message"
+                        name="message"
+                        value={formData.message}
                         onChange={handleInputChange}
                         required
-                        className="w-full px-3 py-2 border border-input rounded-md bg-background text-sm focus:outline-none focus:ring-2 focus:ring-ring focus:border-transparent"
-                        placeholder="your.email@example.com"
+                        rows={6}
+                        className="w-full px-3 py-2 border border-gray-200 dark:border-gray-600 rounded-lg bg-white dark:bg-gray-700 text-xs sm:text-sm text-gray-900 dark:text-white focus:outline-none focus:ring-2 focus:ring-emerald-500 focus:border-transparent transition-colors resize-none"
+                        placeholder="Tell me about your project or just say hello!"
                       />
                     </div>
                   </div>
 
-                  <div>
-                    <label htmlFor="subject" className="block text-sm font-medium mb-2">
-                      Subject *
-                    </label>
-                    <input
-                      type="text"
-                      id="subject"
-                      name="subject"
-                      value={formData.subject}
-                      onChange={handleInputChange}
-                      required
-                      className="w-full px-3 py-2 border border-input rounded-md bg-background text-sm focus:outline-none focus:ring-2 focus:ring-ring focus:border-transparent"
-                      placeholder="What's this about?"
-                    />
-                  </div>
-
-                  <div>
-                    <label htmlFor="message" className="block text-sm font-medium mb-2">
-                      Message *
-                    </label>
-                    <textarea
-                      id="message"
-                      name="message"
-                      value={formData.message}
-                      onChange={handleInputChange}
-                      required
-                      rows={5}
-                      className="w-full px-3 py-2 border border-input rounded-md bg-background text-sm focus:outline-none focus:ring-2 focus:ring-ring focus:border-transparent resize-none"
-                      placeholder="Tell me about your project or just say hello!"
-                    />
-                  </div>
-
-                  <Button type="submit" className="w-full">
-                    Send Message
-                  </Button>
+                  <button
+                    type="submit"
+                    className="group/btn relative w-full flex items-center justify-center px-4 py-2 sm:px-6 sm:py-2.5 text-xs sm:text-sm font-semibold text-white bg-gradient-to-r from-emerald-500 to-cyan-500 hover:from-emerald-400 hover:to-cyan-400 rounded-lg transition-all duration-300 shadow-lg hover:shadow-xl hover:shadow-emerald-500/20 overflow-hidden"
+                  >
+                    <div className="absolute inset-0 bg-gradient-to-r from-white/10 to-white/5 opacity-0 group-hover/btn:opacity-100 transition-opacity duration-300"></div>
+                    <Send className="w-3 h-3 sm:w-4 sm:h-4 lg:w-5 lg:h-5 mr-1.5 sm:mr-2 text-white relative z-10 group-hover/btn:scale-110 transition-transform duration-300" />
+                    <span className="text-white relative z-10 group-hover/btn:translate-x-0.5 transition-transform duration-300">Send Message</span>
+                  </button>
                 </form>
-              </CardContent>
-            </Card>
+              </div>
+            </div>
           </div>
         </div>
       </div>

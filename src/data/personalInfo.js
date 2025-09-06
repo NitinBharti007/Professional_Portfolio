@@ -53,7 +53,7 @@ export const experiences = [
     id: "bluespace-studio",
     company: "Bluespace Studio",
     position: "Software Developer",
-    duration: "Apr 2025 - Present",
+    duration: "May 2025 - Present",
     location: "Agra, Uttar Pradesh",
     description: "Software Developer with hands-on experience in building business-focused web applications and internal tools using both full stack technologies and no-code/low-code platforms",
     achievements: [
@@ -104,6 +104,21 @@ export const experiences = [
 
 export const projects = [
   {
+    id: "mindaku-ai",
+    title: "Mindaku.AI",
+    description: "Next-gen AI-powered educational platform for personalized learning",
+    longDescription: "Mindaku.AI is a next-gen AI-powered educational platform focused on delivering personalized learning and reducing teacher workload, while enhancing student outcomes. It likely combines a modern tech stack: a responsive JavaScript-based frontend, scalable AI-driven backend services, cloud infrastructure, and secure data handling.",
+    technologies: ["React.js", "Supabase", "Tailwind CSS", "OpenAI", "Vercel"],
+    features: [
+      "AI-powered personalized learning experiences",
+      "Teacher workload reduction through automation",
+      "Enhanced student outcomes and engagement"
+    ],
+    githubUrl: "https://github.com/NitinBharti007",
+    liveUrl: "https://mindaku2u.com/",
+    category: "webapp"
+  },
+  {
     id: "personal-portfolio",
     title: "Personal Portfolio",
     description: "A responsive portfolio website showcasing my skills and projects",
@@ -116,42 +131,29 @@ export const projects = [
       "Cross-browser compatibility",
       "Modular and scalable codebase"
     ],
-    githubUrl: "https://github.com/NitinBharti007",
+    githubUrl: "https://github.com/NitinBharti007/My_React_Portfolio.git",
     liveUrl: "https://nitinbharti.in",
     category: "portfolio"
   },
   {
-    id: "ecommerce-platform",
-    title: "E-Commerce Platform",
-    description: "Full-stack e-commerce platform with payment integration",
-    longDescription: "Developed a responsive e-commerce platform with 100% client-side rendering, user authentication, product management, shopping cart, order tracking, Stripe payment gateway, admin dashboard, Redux Toolkit for state management, Axios for API calls, mobile-first UI with Tailwind CSS, and continuous deployment.",
-    technologies: ["MERN Stack", "Redux", "Stripe", "Tailwind CSS"],
+    id: "quicko-ecommerce",
+    title: "Quicko E-commerce",
+    description: "Fast delivery e-commerce platform with modern UI",
+    longDescription: "Quicko is a modern, fast delivery e-commerce web app focused on user-friendly browsing and lightning-fast access to products. Built with React and Tailwind CSS, it features a clean UI, responsive design, and efficient product showcasing—ideal for businesses aiming to highlight fast-moving goods with style and speed.",
+    technologies: ["MongoDB", "React.js", "Node.js", "Express.js", "Tailwind CSS", "Redux"],
     features: [
-      "User authentication and authorization",
-      "Product management system",
-      "Shopping cart functionality",
-      "Order tracking",
-      "Stripe payment integration",
-      "Admin dashboard",
-      "Redux state management",
-      "Mobile-first responsive design"
+      "Lightning-fast product browsing and search",
+      "Modern, clean UI with Tailwind CSS",
+      "Responsive design for all devices",
+      "Efficient product showcasing system",
+      "Fast delivery focus and optimization",
+      "User-friendly navigation and browsing",
+      "Redux state management for performance",
+      "MERN stack architecture for scalability"
     ],
+    githubUrl: "https://github.com/NitinBharti007/Quicko_App.git",
+    liveUrl: "https://quicko.vercel.app/",
     category: "ecommerce"
-  },
-  {
-    id: "food-delivery-app",
-    title: "Food Delivery App",
-    description: "Responsive food delivery platform with modern UI/UX",
-    longDescription: "Engineered a responsive food delivery platform with modern UI/UX principles, component-based architecture, dynamic menu management, cross-device compatibility, and interactive navigation.",
-    technologies: ["React.js", "CSS3", "React Router DOM"],
-    features: [
-      "Modern UI/UX design",
-      "Component-based architecture",
-      "Dynamic menu management",
-      "Cross-device compatibility",
-      "Interactive navigation"
-    ],
-    category: "webapp"
   }
 ];
 

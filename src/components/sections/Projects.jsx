@@ -2,6 +2,7 @@ import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { Badge } from '@/components/ui/badge';
 import { Button } from '@/components/ui/button';
 import { projects } from '@/data/personalInfo';
+import { FolderOpen, ExternalLink, Github, Star, Code, Zap, Users, Target } from 'lucide-react';
 
 const Projects = () => {
   const getCategoryColor = (category) => {
@@ -25,114 +26,141 @@ const Projects = () => {
   };
 
   return (
-    <section id="projects" className="py-20">
-      <div className="container mx-auto px-4">
-        <div className="max-w-6xl mx-auto">
-          {/* Section Header */}
-          <div className="text-center mb-16">
-            <Badge variant="outline" className="mb-4">
-              Featured Projects
-            </Badge>
-            <h2 className="text-3xl md:text-4xl font-bold mb-4">
+    <section id="projects" className="py-12 sm:py-16 md:py-20 lg:py-24 bg-white dark:bg-gray-900 relative overflow-hidden">
+      {/* Background Pattern - Matching Other Sections */}
+      <div className="absolute inset-0 bg-gradient-to-br from-emerald-50/30 via-transparent to-cyan-50/30 dark:from-emerald-900/5 dark:via-transparent dark:to-cyan-900/5"></div>
+      <div className="absolute top-0 right-0 w-64 h-64 sm:w-80 sm:h-80 md:w-96 md:h-96 bg-gradient-to-bl from-emerald-100/20 to-transparent dark:from-emerald-800/10 rounded-full blur-3xl"></div>
+      <div className="absolute bottom-0 left-0 w-64 h-64 sm:w-80 sm:h-80 md:w-96 md:h-96 bg-gradient-to-tr from-cyan-100/20 to-transparent dark:from-cyan-800/10 rounded-full blur-3xl"></div>
+      
+      <div className="container mx-auto px-4 sm:px-6 md:px-8 relative z-10">
+        <div className="max-w-7xl mx-auto">
+          {/* Section Header - Matching Other Sections */}
+          <div className="text-center mb-12 sm:mb-16 md:mb-20">
+            <div className="inline-flex items-center px-3 py-2 sm:px-4 sm:py-2 bg-gradient-to-r from-emerald-100 to-cyan-100 dark:from-emerald-900/30 dark:to-cyan-900/30 rounded-full mb-4 sm:mb-6">
+              <FolderOpen className="w-3 h-3 sm:w-4 sm:h-4 text-emerald-600 dark:text-emerald-400 mr-2" />
+              <span className="text-xs sm:text-sm font-medium text-emerald-700 dark:text-emerald-300">Featured Projects</span>
+            </div>
+            <h2 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold mb-4 sm:mb-6">
+              <span className="bg-gradient-to-r from-white to-emerald-400 dark:from-gray-100 dark:to-emerald-400 bg-clip-text text-transparent">
               My Recent Work
+              </span>
             </h2>
-            <p className="text-lg text-muted-foreground max-w-2xl mx-auto">
+            <p className="text-base sm:text-lg md:text-xl text-gray-600 dark:text-gray-300 max-w-3xl mx-auto leading-relaxed px-4">
               A showcase of my latest projects and the technologies I've used to build them
             </p>
           </div>
 
-          {/* Projects Grid */}
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+           {/* Projects Grid - Enhanced Styling */}
+           <div className="grid grid-cols-1 sm:grid-cols-2 xl:grid-cols-3 gap-4 sm:gap-6 lg:gap-8">
             {projects.map((project) => (
-              <Card key={project.id} className="group hover:shadow-lg transition-all duration-300 overflow-hidden">
-                {/* Project Image Placeholder */}
-                <div className="h-48 bg-gradient-to-br from-primary/20 to-primary/5 flex items-center justify-center">
-                  <div className="text-6xl opacity-50">
-                    {getCategoryIcon(project.category)}
+               <div key={project.id} className="group relative h-full">
+                 {/* Card Glow Effect */}
+                 <div className="absolute -inset-0.5 bg-gradient-to-r from-emerald-500 to-cyan-500 rounded-2xl blur opacity-0 group-hover:opacity-20 transition duration-500"></div>
+                 
+                 <div className="relative bg-white dark:bg-gray-800 h-full flex flex-col p-4 sm:p-5 lg:p-6 xl:p-8 rounded-xl sm:rounded-2xl shadow-lg hover:shadow-xl transition-all duration-300 border border-gray-100 dark:border-gray-700 hover:border-emerald-200 dark:hover:border-emerald-700 overflow-hidden">
+                  {/* Project Header */}
+                  <div className="mb-4 sm:mb-6">
+                    <div className="flex items-start gap-2 sm:gap-3 mb-3 sm:mb-4">
+                      <div className="w-10 h-10 sm:w-12 sm:h-12 lg:w-12 lg:h-12 xl:w-14 xl:h-14 bg-emerald-100 dark:bg-emerald-900/30 rounded-lg sm:rounded-xl lg:rounded-2xl flex items-center justify-center group-hover:scale-110 transition-transform duration-300 flex-shrink-0">
+                        <FolderOpen className="w-5 h-5 sm:w-6 sm:h-6 lg:w-6 lg:h-6 xl:w-7 xl:h-7 text-emerald-600 dark:text-emerald-400" />
+                      </div>
+                      <div className="flex-1 min-w-0">
+                        <h3 className="text-base sm:text-lg lg:text-lg xl:text-xl font-bold text-gray-900 dark:text-white mb-1 sm:mb-2 leading-tight group-hover:text-emerald-600 dark:group-hover:text-emerald-400 transition-colors">
+                          {project.title}
+                        </h3>
+                        <p className="text-xs sm:text-sm lg:text-sm xl:text-base text-gray-600 dark:text-gray-300 leading-relaxed">
+                          {project.description}
+                        </p>
                   </div>
                 </div>
 
-                <CardHeader>
-                  <div className="flex items-start justify-between gap-2">
-                    <CardTitle className="text-xl group-hover:text-primary transition-colors">
-                      {project.title}
-                    </CardTitle>
-                    <Badge 
-                      variant="secondary" 
-                      className={`text-white ${getCategoryColor(project.category)}`}
-                    >
+                    {/* Category Badge */}
+                    <div className="flex justify-start">
+                      <span className={`px-3 py-1.5 text-xs font-medium rounded-full ${getCategoryColor(project.category)} text-white`}>
                       {project.category}
-                    </Badge>
+                      </span>
+                    </div>
                   </div>
-                  <p className="text-muted-foreground text-sm">
-                    {project.description}
-                  </p>
-                </CardHeader>
 
-                <CardContent className="space-y-4">
                   {/* Technologies */}
-                  <div>
-                    <h4 className="font-semibold text-sm mb-2">Technologies:</h4>
-                    <div className="flex flex-wrap gap-1">
+                  <div className="mb-4 sm:mb-6">
+                    <h4 className="text-xs sm:text-sm font-semibold text-gray-900 dark:text-white mb-2 sm:mb-3 flex items-center">
+                      <Code className="w-3 h-3 sm:w-4 sm:h-4 mr-1 sm:mr-2 text-emerald-600 dark:text-emerald-400" />
+                      Technologies Used
+                    </h4>
+                    <div className="flex flex-wrap gap-1 sm:gap-1.5 lg:gap-2">
                       {project.technologies.slice(0, 4).map((tech) => (
-                        <Badge key={tech} variant="outline" className="text-xs">
+                        <span key={tech} className="px-2 py-1 sm:px-2.5 sm:py-1 lg:px-3 lg:py-1.5 bg-gradient-to-r from-emerald-100 to-cyan-100 dark:from-emerald-900/30 dark:to-cyan-900/30 text-emerald-700 dark:text-emerald-300 text-xs rounded-full font-medium border border-emerald-200 dark:border-emerald-700">
                           {tech}
-                        </Badge>
+                        </span>
                       ))}
                       {project.technologies.length > 4 && (
-                        <Badge variant="outline" className="text-xs">
+                        <span className="px-2 py-1 sm:px-2.5 sm:py-1 lg:px-3 lg:py-1.5 bg-gradient-to-r from-gray-100 to-gray-200 dark:from-gray-700 dark:to-gray-600 text-gray-700 dark:text-gray-300 text-xs rounded-full font-medium border border-gray-200 dark:border-gray-600">
                           +{project.technologies.length - 4} more
-                        </Badge>
+                        </span>
                       )}
                     </div>
                   </div>
 
                   {/* Key Features */}
-                  <div>
-                    <h4 className="font-semibold text-sm mb-2">Key Features:</h4>
-                    <ul className="space-y-1">
+                  <div className="mb-4">
+                    <h4 className="text-xs sm:text-sm font-semibold text-gray-900 dark:text-white mb-2 flex items-center">
+                      <Star className="w-3 h-3 sm:w-4 sm:h-4 mr-2 text-emerald-600 dark:text-emerald-400" />
+                      Key Features
+                    </h4>
+                    <div className="space-y-1">
                       {project.features.slice(0, 3).map((feature, index) => (
-                        <li key={index} className="flex items-start space-x-2">
-                          <div className="w-1 h-1 bg-primary rounded-full mt-2 flex-shrink-0"></div>
-                          <span className="text-xs text-muted-foreground">{feature}</span>
-                        </li>
+                        <div key={index} className="flex items-start space-x-2 p-1.5 bg-gray-50 dark:bg-gray-700/50 rounded-md">
+                          <div className="w-1 h-1 bg-emerald-500 rounded-full mt-1.5 flex-shrink-0"></div>
+                          <span className="text-xs text-gray-600 dark:text-gray-300 leading-tight">{feature}</span>
+                        </div>
                       ))}
-                    </ul>
+                    </div>
                   </div>
 
-                  {/* Action Buttons */}
-                  <div className="flex gap-2 pt-4">
-                    {project.githubUrl && (
-                      <Button variant="outline" size="sm" className="flex-1" asChild>
-                        <a href={project.githubUrl} target="_blank" rel="noopener noreferrer">
-                          <svg className="w-4 h-4 mr-2" fill="currentColor" viewBox="0 0 24 24">
-                            <path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z"/>
-                          </svg>
-                          Code
-                        </a>
-                      </Button>
-                    )}
-                    {project.liveUrl && (
-                      <Button size="sm" className="flex-1" asChild>
-                        <a href={project.liveUrl} target="_blank" rel="noopener noreferrer">
-                          <svg className="w-4 h-4 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14" />
-                          </svg>
-                          Live Demo
-                        </a>
-                      </Button>
-                    )}
+                   {/* Action Buttons - Always at bottom */}
+                   <div className="flex gap-2 sm:gap-3 mt-auto pt-3 sm:pt-4">
+                     <a
+                       href={project.githubUrl}
+                       target="_blank"
+                       rel="noopener noreferrer"
+                       className="group/btn relative flex-1 flex items-center justify-center px-3 py-2 sm:px-4 sm:py-2.5 lg:py-3 text-xs sm:text-sm font-semibold text-white bg-gradient-to-r from-gray-700 to-gray-800 hover:from-gray-600 hover:to-gray-700 border border-gray-600 hover:border-gray-500 rounded-lg transition-all duration-300 overflow-hidden shadow-lg hover:shadow-xl"
+                     >
+                       <Github className="w-3 h-3 sm:w-4 sm:h-4 mr-1 sm:mr-1.5 lg:mr-2 text-white group-hover/btn:scale-110 transition-transform duration-300" />
+                       <span className="text-white group-hover/btn:translate-x-0.5 transition-transform duration-300">Code</span>
+                     </a>
+                     <a
+                       href={project.liveUrl}
+                       target="_blank"
+                       rel="noopener noreferrer"
+                       className="group/btn relative flex-1 flex items-center justify-center px-3 py-2 sm:px-4 sm:py-2.5 lg:py-3 text-xs sm:text-sm font-semibold text-white bg-gradient-to-r from-emerald-500 to-cyan-500 hover:from-emerald-400 hover:to-cyan-400 rounded-lg transition-all duration-300 shadow-lg hover:shadow-xl hover:shadow-emerald-500/20 overflow-hidden"
+                     >
+                       <div className="absolute inset-0 bg-gradient-to-r from-white/10 to-white/5 opacity-0 group-hover/btn:opacity-100 transition-opacity duration-300"></div>
+                       <ExternalLink className="w-3 h-3 sm:w-4 sm:h-4 mr-1 sm:mr-1.5 lg:mr-2 text-white relative z-10 group-hover/btn:scale-110 transition-transform duration-300" />
+                       <span className="text-white relative z-10 group-hover/btn:translate-x-0.5 transition-transform duration-300">Live Demo</span>
+                     </a>
+                   </div>
+                </div>
                   </div>
-                </CardContent>
-              </Card>
             ))}
           </div>
 
-          {/* View More Projects */}
-          <div className="text-center mt-12">
-            <Button variant="outline" size="lg">
-              View All Projects on GitHub
-            </Button>
+          {/* View More Projects - Simple */}
+          <div className="text-center mt-8 sm:mt-12">
+            <h3 className="text-lg sm:text-xl font-bold text-gray-900 dark:text-white mb-2 sm:mb-3">Explore More Projects</h3>
+            <p className="text-sm sm:text-base text-gray-600 dark:text-gray-300 mb-4 sm:mb-6 leading-relaxed">
+              Check out my complete portfolio on GitHub.
+            </p>
+            <a
+              href="https://github.com/NitinBharti007"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="group relative inline-flex items-center justify-center px-4 py-2 sm:px-6 sm:py-3 text-sm sm:text-base font-semibold text-white bg-gradient-to-r from-emerald-500 to-cyan-500 hover:from-emerald-400 hover:to-cyan-400 rounded-lg transition-all duration-300 shadow-lg hover:shadow-xl hover:shadow-emerald-500/20 overflow-hidden"
+            >
+              <div className="absolute inset-0 bg-gradient-to-r from-white/10 to-white/5 opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
+              <Github className="w-4 h-4 sm:w-5 sm:h-5 mr-2 text-white relative z-10 group-hover:scale-110 transition-transform duration-300" />
+              <span className="text-white relative z-10 group-hover:translate-x-0.5 transition-transform duration-300">View All Projects</span>
+            </a>
           </div>
         </div>
       </div>

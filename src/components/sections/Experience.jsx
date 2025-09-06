@@ -5,7 +5,7 @@ import { Briefcase, MapPin, Calendar, Code } from 'lucide-react';
 
 const Experience = () => {
   return (
-    <section id="experience" className="py-12 sm:py-16 md:py-20 lg:py-24 bg-gray-50 dark:bg-gray-800 relative overflow-hidden">
+    <section id="experience" className="py-12 sm:py-16 md:py-20 lg:py-24 bg-white dark:bg-gray-900 relative overflow-hidden">
       {/* Background Pattern - Different from Skills Section */}
       <div className="absolute inset-0 bg-gradient-to-br from-blue-50/40 via-transparent to-indigo-50/40 dark:from-blue-900/8 dark:via-transparent dark:to-indigo-900/8"></div>
       <div className="absolute top-0 right-0 w-64 h-64 sm:w-80 sm:h-80 md:w-96 md:h-96 bg-gradient-to-bl from-blue-100/25 to-transparent dark:from-blue-800/12 rounded-full blur-3xl"></div>
@@ -43,8 +43,8 @@ const Experience = () => {
                   {/* Experience Card */}
                   <div className="md:ml-12 lg:ml-16">
                     <div className="group relative">
-                      {/* Card Glow Effect - Only on desktop */}
-                      <div className="absolute -inset-0.5 bg-gradient-to-r from-emerald-500 to-cyan-500 rounded-2xl blur opacity-0 group-hover:opacity-20 transition duration-500 hidden md:block"></div>
+                      {/* Card Glow Effect */}
+                      <div className="absolute -inset-0.5 bg-gradient-to-r from-emerald-500 to-cyan-500 rounded-xl sm:rounded-2xl blur opacity-0 group-hover:opacity-20 transition duration-500"></div>
                       
                       <div className="relative bg-white dark:bg-gray-800 p-4 sm:p-6 md:p-8 rounded-xl sm:rounded-2xl shadow-lg hover:shadow-xl transition-all duration-300 border border-gray-100 dark:border-gray-700 hover:border-emerald-200 dark:hover:border-emerald-700">
                         {/* Header - Responsive Layout */}

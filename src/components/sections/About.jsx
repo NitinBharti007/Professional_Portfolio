@@ -124,8 +124,11 @@ const About = () => {
             {stats.map((stat, index) => {
               const IconComponent = stat.icon;
               return (
-                <div key={index} className="group">
-                    <div className="bg-white dark:bg-gray-800 p-3 sm:p-4 md:p-5 lg:p-6 rounded-xl sm:rounded-2xl shadow-lg hover:shadow-xl transition-all duration-300 border border-gray-100 dark:border-gray-700 hover:border-gray-200 dark:hover:border-gray-600 text-center">
+                <div key={index} className="group relative">
+                  {/* Card Glow Effect */}
+                  <div className="absolute -inset-0.5 bg-gradient-to-r from-emerald-500 to-cyan-500 rounded-xl sm:rounded-2xl blur opacity-0 group-hover:opacity-20 transition duration-500"></div>
+                  
+                  <div className="relative bg-white dark:bg-gray-800 p-3 sm:p-4 md:p-5 lg:p-6 rounded-xl sm:rounded-2xl shadow-lg hover:shadow-xl transition-all duration-300 border border-gray-100 dark:border-gray-700 hover:border-emerald-200 dark:hover:border-emerald-700 text-center">
                       <div className="w-10 h-10 sm:w-12 sm:h-12 md:w-14 md:h-14 lg:w-12 lg:h-12 bg-emerald-100 dark:bg-emerald-900/30 rounded-lg sm:rounded-xl flex items-center justify-center mb-2 sm:mb-3 md:mb-4 mx-auto group-hover:scale-110 transition-transform duration-300">
                         <IconComponent className="w-5 h-5 sm:w-6 sm:h-6 md:w-7 md:h-7 lg:w-6 lg:h-6 text-emerald-600 dark:text-emerald-400" />
                       </div>
@@ -155,8 +158,11 @@ const About = () => {
                 {skills.map((skill, index) => {
                   const IconComponent = skill.icon;
                   return (
-                    <div key={index} className="group h-full">
-                      <div className="bg-white dark:bg-gray-800 p-4 sm:p-5 md:p-6 rounded-xl sm:rounded-2xl shadow-lg hover:shadow-xl transition-all duration-300 border border-gray-100 dark:border-gray-700 hover:border-gray-200 dark:hover:border-gray-600 text-center h-full flex flex-col justify-between">
+                    <div key={index} className="group h-full relative">
+                      {/* Card Glow Effect */}
+                      <div className="absolute -inset-0.5 bg-gradient-to-r from-emerald-500 to-cyan-500 rounded-xl sm:rounded-2xl blur opacity-0 group-hover:opacity-20 transition duration-500"></div>
+                      
+                      <div className="relative bg-white dark:bg-gray-800 p-4 sm:p-5 md:p-6 rounded-xl sm:rounded-2xl shadow-lg hover:shadow-xl transition-all duration-300 border border-gray-100 dark:border-gray-700 hover:border-emerald-200 dark:hover:border-emerald-700 text-center h-full flex flex-col justify-between">
                         <div>
                           <div className="w-12 h-12 sm:w-14 sm:h-14 bg-emerald-100 dark:bg-emerald-900/30 rounded-xl sm:rounded-2xl flex items-center justify-center mb-3 sm:mb-4 mx-auto group-hover:scale-110 transition-transform duration-300">
                             <IconComponent className="w-6 h-6 sm:w-7 sm:h-7 text-emerald-600 dark:text-emerald-400" />
@@ -209,8 +215,11 @@ const About = () => {
               {experiences.map((exp, index) => {
                 const IconComponent = exp.icon;
                 return (
-                  <div key={index} className="group">
-                    <div className="bg-white dark:bg-gray-800 p-4 sm:p-5 md:p-6 lg:p-8 rounded-xl sm:rounded-2xl md:rounded-3xl shadow-lg hover:shadow-xl transition-all duration-300 border border-gray-100 dark:border-gray-700 hover:border-gray-200 dark:hover:border-gray-600 h-full text-left">
+                   <div key={index} className="group relative">
+                     {/* Card Glow Effect */}
+                     <div className="absolute -inset-0.5 bg-gradient-to-r from-emerald-500 to-cyan-500 rounded-xl sm:rounded-2xl md:rounded-3xl blur opacity-0 group-hover:opacity-20 transition duration-500"></div>
+                     
+                     <div className="relative bg-white dark:bg-gray-800 p-4 sm:p-5 md:p-6 lg:p-8 rounded-xl sm:rounded-2xl md:rounded-3xl shadow-lg hover:shadow-xl transition-all duration-300 border border-gray-100 dark:border-gray-700 hover:border-emerald-200 dark:hover:border-emerald-700 h-full text-left">
                       <div className="w-12 h-12 sm:w-14 sm:h-14 md:w-16 md:h-16 lg:w-16 lg:h-16 bg-emerald-100 dark:bg-emerald-900/30 rounded-lg sm:rounded-xl md:rounded-2xl flex items-center justify-center mb-3 sm:mb-4 md:mb-6 group-hover:scale-110 transition-transform duration-300">
                         <IconComponent className="w-6 h-6 sm:w-7 sm:h-7 md:w-8 md:h-8 lg:w-8 lg:h-8 text-emerald-600 dark:text-emerald-400" />
                       </div>
