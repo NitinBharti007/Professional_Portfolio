@@ -87,7 +87,7 @@ const Header = () => {
               {/* Desktop CTA Buttons */}
               <div className="hidden lg:flex items-center space-x-4">
                 <button 
-                  className="group relative flex items-center px-6 py-3 text-sm font-semibold text-white/90 hover:text-white hover:bg-white/5 transition-all duration-300 cursor-pointer border border-white/20 hover:border-white/40 rounded-xl"
+                  className="group relative flex items-center px-6 py-3 text-sm font-semibold text-white bg-gradient-to-r from-gray-700 to-gray-800 hover:from-gray-600 hover:to-gray-700 transition-all duration-300 cursor-pointer border border-gray-600 hover:border-gray-500 rounded-xl shadow-lg hover:shadow-xl"
                 >
                   <Download className="w-4 h-4 mr-2 group-hover:scale-110 transition-transform duration-300" />
                   <span className="group-hover:translate-x-0.5 transition-transform duration-300">Download CV</span>
@@ -104,8 +104,14 @@ const Header = () => {
 
               {/* Mobile/Tablet menu button */}
               <button
-                className="lg:hidden p-2 text-white/80 hover:text-white transition-colors duration-200 cursor-pointer ml-1"
+                className="lg:hidden p-2 text-white hover:text-white rounded-lg transition-all duration-300 cursor-pointer ml-1"
                 onClick={() => setIsMenuOpen(!isMenuOpen)}
+                style={{ 
+                  backgroundColor: 'rgba(255, 255, 255, 0.15)', 
+                  border: '1px solid rgba(255, 255, 255, 0.3)',
+                  backdropFilter: 'blur(10px)',
+                  boxShadow: '0 2px 4px rgba(0, 0, 0, 0.1)'
+                }}
               >
                 {isMenuOpen ? (
                   <X className="w-4 h-4 sm:w-5 sm:h-5" />
@@ -118,7 +124,7 @@ const Header = () => {
 
         {/* Mobile Navigation */}
         {isMenuOpen && (
-          <div className="lg:hidden absolute top-full left-0 right-0 mt-2 bg-black/95 backdrop-blur-xl rounded-2xl border border-white/20 z-[60] shadow-xl shadow-black/40 animate-in slide-in-from-top-2 duration-300">
+          <div className="lg:hidden absolute top-full left-0 right-0 mt-2 bg-white/95 dark:bg-gray-900/95 backdrop-blur-xl rounded-2xl border border-gray-200/50 dark:border-gray-700/50 z-[60] shadow-xl shadow-gray-500/20 dark:shadow-black/40 animate-in slide-in-from-top-2 duration-300">
             <div className="p-3">
               {/* Navigation Links */}
               <div className="space-y-1 mb-4">
@@ -126,27 +132,26 @@ const Header = () => {
                   <button 
                     key={item.name}
                     onClick={() => scrollToSection(item.href.replace('#', ''))}
-                    className="group relative flex items-center w-full px-4 py-3 text-base font-medium text-white/90 hover:text-white transition-all duration-300 rounded-xl overflow-hidden"
+                    className="group relative flex items-center w-full px-4 py-3 text-base font-medium text-gray-700 dark:text-white/90 hover:text-gray-900 dark:hover:text-white transition-all duration-300 bg-transparent hover:bg-transparent focus:bg-transparent active:bg-transparent"
+                    style={{ backgroundColor: 'transparent' }}
                   >
-                    <div className="absolute inset-0 bg-gradient-to-r from-emerald-500/10 to-cyan-500/10 opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
-                    <div className="absolute left-0 top-0 bottom-0 w-1 bg-gradient-to-b from-emerald-500 to-cyan-500 scale-y-0 group-hover:scale-y-100 transition-transform duration-300 origin-top"></div>
-                    <span className="relative z-10 group-hover:translate-x-2 transition-transform duration-300">{item.name}</span>
+                    <span className="relative group-hover:translate-x-2 transition-transform duration-300">{item.name}</span>
+                    <span className="absolute -bottom-1 left-4 w-0 h-0.5 bg-gradient-to-r from-emerald-500 to-cyan-500 transition-all duration-300 group-hover:w-[calc(100%-2rem)]"></span>
                   </button>
                 ))}
               </div>
               
               {/* CTA Buttons */}
-              <div className="space-y-1.5">
+              <div className="flex space-x-2">
                 <button 
-                  className="group relative w-full flex items-center justify-center px-4 py-2 text-xs font-semibold text-white/90 hover:text-white border border-white/20 hover:border-white/40 rounded-lg transition-all duration-300 overflow-hidden"
+                  className="group relative flex-1 flex items-center justify-center px-3 py-2 text-xs font-semibold text-white bg-gradient-to-r from-gray-700 to-gray-800 hover:from-gray-600 hover:to-gray-700 border border-gray-600 hover:border-gray-500 rounded-lg transition-all duration-300 overflow-hidden shadow-lg hover:shadow-xl"
                 >
-                  <div className="absolute inset-0 bg-gradient-to-r from-white/5 to-white/10 opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
                   <Download className="w-3 h-3 mr-1.5 group-hover:scale-110 transition-transform duration-300" />
-                  <span className="relative z-10 group-hover:translate-x-1 transition-transform duration-300">Download CV</span>
+                  <span className="group-hover:translate-x-1 transition-transform duration-300">Download CV</span>
                 </button>
                 
                 <button 
-                  className="group relative w-full flex items-center justify-center px-4 py-2 text-xs font-semibold text-white bg-gradient-to-r from-emerald-500 to-cyan-500 hover:from-emerald-400 hover:to-cyan-400 rounded-lg transition-all duration-300 shadow-lg hover:shadow-xl hover:shadow-emerald-500/20 overflow-hidden"
+                  className="group relative flex-1 flex items-center justify-center px-3 py-2 text-xs font-semibold text-white bg-gradient-to-r from-emerald-500 to-cyan-500 hover:from-emerald-400 hover:to-cyan-400 rounded-lg transition-all duration-300 shadow-lg hover:shadow-xl hover:shadow-emerald-500/20 overflow-hidden"
                   onClick={() => scrollToSection('contact')}
                 >
                   <div className="absolute inset-0 bg-gradient-to-r from-white/10 to-white/5 opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>

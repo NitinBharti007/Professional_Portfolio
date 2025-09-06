@@ -50,24 +50,45 @@ export const skills = [
 
 export const experiences = [
   {
+    id: "bluespace-studio",
+    company: "Bluespace Studio",
+    position: "Software Developer",
+    duration: "Apr 2025 - Present",
+    location: "Agra, Uttar Pradesh",
+    description: "Software Developer with hands-on experience in building business-focused web applications and internal tools using both full stack technologies and no-code/low-code platforms",
+    achievements: [
+      "Developed an AI-powered school management system using React.js, Tailwind CSS, Supabase, and OpenAI integration for intelligent automation",
+      "Building business-focused web applications and internal tools using MERN stack (MongoDB, Express.js, React.js, Node.js)",
+      "Utilizing no-code/low-code platforms like Supabase, Airtable, and Softr for rapid development and automation",
+      "Working on real-world projects that solve operational challenges, improve workflows, and deliver scalable solutions for businesses",
+      "Combining technical development with practical outcomes through custom dashboards, order management systems, and automated internal tools",
+      "Contributing across the tech stack in fast-paced startup environments with small teams for quick iteration and impactful product development"
+    ],
+    technologies: ["MERN Stack", "MongoDB", "Express.js", "React.js", "Node.js", "Supabase", "Airtable", "Softr", "OpenAI", "Tailwind CSS", "JavaScript", "Git", "GitHub"]
+  },
+  {
     id: "ventures-grow",
     company: "Ventures Grow",
     position: "Full Stack Developer Intern",
-    duration: "Oct 2024 - Mar 2025",
-    location: "Remote",
-    description: "Developed and optimized responsive web applications using modern technologies",
+    duration: "Oct 2024 - Apr 2025",
+    location: "Noida, Uttar Pradesh",
+    description: "Developed multiple full-stack web applications using MERN stack and modern UI/UX principles",
     achievements: [
-      "Developed and optimized responsive web applications using React.js, Tailwind CSS, JavaScript, HTML, and CSS, ensuring seamless user experiences",
-      "Improved application load times, optimized code structure, and ensured cross-browser compatibility",
-      "Deployed and managed websites on live production servers",
-      "Used Git and GitHub for structured version control, efficient team collaboration, and maintaining a clean codebase"
+      "Created multiple projects using MERN stack (MongoDB, Express.js, React.js, Node.js) for end-to-end web application development",
+      "Designed and implemented modern UI/UX interfaces using React.js, Tailwind CSS, and custom CSS for enhanced user experiences",
+      "Built responsive web applications with seamless frontend-backend integration and real-time data management",
+      "Developed RESTful APIs using Express.js and Node.js for efficient data handling and server-side logic",
+      "Implemented database design and management using MongoDB for scalable data storage and retrieval",
+      "Improved application performance through code optimization, load time reduction, and cross-browser compatibility",
+      "Deployed and managed multiple projects on live production servers with continuous monitoring",
+      "Used Git and GitHub for structured version control, efficient team collaboration, and maintaining clean, scalable codebases"
     ],
-    technologies: ["React.js", "Tailwind CSS", "JavaScript", "HTML", "CSS", "Git", "GitHub"]
+    technologies: ["MERN Stack", "MongoDB", "Express.js", "React.js", "Node.js", "Tailwind CSS", "JavaScript", "HTML", "CSS", "UI/UX", "Git", "GitHub"]
   },
   {
     id: "salesqueen",
     company: "Salesqueen Software Solutions",
-    position: "Front End Developer Internship",
+    position: "Front End Developer Intern",
     duration: "July 2024 - Sep 2024",
     location: "Remote",
     description: "Built mobile-responsive and user-friendly web interfaces",
@@ -137,8 +158,8 @@ export const projects = [
 export const education = [
   {
     degree: "Bachelor of Technology (B.Tech)",
-    institution: "Your University Name",
-    duration: "2021 - 2025",
-    location: "Noida, India"
+    institution: "UIET CSJM University",
+    duration: "2020 - 2024",
+    location: "Kanpur, Uttar Pradesh"
   }
 ];
