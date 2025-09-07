@@ -129,24 +129,21 @@ const Hero = () => {
                 <Github className="w-5 h-5 sm:w-6 sm:h-6 md:w-7 md:h-7 text-gray-300 group-hover:text-white group-hover:scale-110 transition-all duration-300" />
               </a>
               <a
-                href="https://www.linkedin.com/in/nitinbharti1163/"
+                href={personalInfo.linkedin}
                 target="_blank"
                 rel="noopener noreferrer"
                 className="p-3 sm:p-3.5 md:p-4 bg-white/10 hover:bg-white/20 border border-white/20 hover:border-white/40 rounded-2xl transition-all duration-300 group shadow-lg hover:shadow-xl"
               >
                 <Linkedin className="w-5 h-5 sm:w-6 sm:h-6 md:w-7 md:h-7 text-gray-300 group-hover:text-white group-hover:scale-110 transition-all duration-300" />
               </a>
-              <button 
-                className="p-3 sm:p-3.5 md:p-4 rounded-2xl transition-all duration-300 group shadow-lg hover:shadow-xl"
-                style={{ 
-                  backgroundColor: 'rgba(55, 65, 81, 0.8)', 
-                  border: '1px solid rgba(75, 85, 99, 0.6)',
-                  backdropFilter: 'blur(10px)',
-                  borderRadius: '1rem'
-                }}
+              <a
+                href={personalInfo.resume}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="p-3 sm:p-3.5 md:p-4 bg-white/10 hover:bg-white/20 border border-white/20 hover:border-white/40 rounded-2xl transition-all duration-300 group shadow-lg hover:shadow-xl"
               >
-                <Download className="w-5 h-5 sm:w-6 sm:h-6 md:w-7 md:h-7 text-white group-hover:scale-110 transition-all duration-300" />
-              </button>
+                <Download className="w-5 h-5 sm:w-6 sm:h-6 md:w-7 md:h-7 text-gray-300 group-hover:text-white group-hover:scale-110 transition-all duration-300" />
+              </a>
             </div>
 
             {/* CTA Buttons - Mobile Second */}

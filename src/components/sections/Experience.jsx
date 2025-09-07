@@ -38,7 +38,7 @@ const Experience = () => {
               {experiences.map((exp, index) => (
                 <div key={exp.id} className="relative">
                   {/* Timeline Dot - Hidden on mobile, visible on desktop */}
-                  <div className="absolute left-4 md:left-6 w-3 h-3 md:w-4 md:h-4 bg-emerald-600 dark:bg-emerald-500 rounded-full border-2 md:border-4 border-white dark:border-gray-900 shadow-lg hidden md:block z-10"></div>
+                  <div className="absolute left-6 md:left-8 -translate-x-1/2 w-3 h-3 md:w-4 md:h-4 bg-emerald-600 dark:bg-emerald-500 rounded-full border-2 md:border-4 border-white dark:border-gray-900 shadow-lg hidden md:block z-10"></div>
                   
                   {/* Experience Card */}
                   <div className="md:ml-12 lg:ml-16">

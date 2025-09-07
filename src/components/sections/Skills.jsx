@@ -45,19 +45,19 @@ const Skills = () => {
 
   const getSkillLevelColor = (level) => {
     switch (level) {
-      case 'expert': return 'bg-emerald-600 dark:bg-emerald-500';
-      case 'advanced': return 'bg-emerald-600 dark:bg-emerald-500';
-      case 'intermediate': return 'bg-emerald-600 dark:bg-emerald-500';
-      case 'beginner': return 'bg-emerald-600 dark:bg-emerald-500';
-      default: return 'bg-emerald-600 dark:bg-emerald-500';
+      case 'expert': return 'bg-emerald-500';
+      case 'advanced': return 'bg-cyan-500';
+      case 'intermediate': return 'bg-teal-500';
+      case 'beginner': return 'bg-gray-400';
+      default: return 'bg-gray-400';
     }
   };
 
   const getBadgeColor = (level) => {
     switch (level) {
       case 'expert': return 'bg-emerald-100 dark:bg-emerald-900/30 text-emerald-700 dark:text-emerald-300';
-      case 'advanced': return 'bg-emerald-100 dark:bg-emerald-900/30 text-emerald-700 dark:text-emerald-300';
-      case 'intermediate': return 'bg-gray-100 dark:bg-gray-700 text-gray-700 dark:text-gray-300';
+      case 'advanced': return 'bg-cyan-100 dark:bg-cyan-900/30 text-cyan-700 dark:text-cyan-300';
+      case 'intermediate': return 'bg-teal-100 dark:bg-teal-900/30 text-teal-700 dark:text-teal-300';
       case 'beginner': return 'bg-gray-100 dark:bg-gray-700 text-gray-700 dark:text-gray-300';
       default: return 'bg-gray-100 dark:bg-gray-700 text-gray-700 dark:text-gray-300';
     }

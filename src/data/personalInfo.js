@@ -9,6 +9,8 @@ export const personalInfo = {
   location: "Agra, Uttar Pradesh",
   portfolio: "nitinbharti.in",
   github: "https://github.com/NitinBharti007",
+  linkedin: "https://www.linkedin.com/in/nitinbharti1163/",
+  resume: "/Nitin_Bharti.pdf",
   summary: "I am a Software Developer specializing in MERN stack and no-code platforms. Building business-focused web applications and internal tools that solve real operational challenges. Passionate about creating impactful solutions for startups and fast-paced environments."
 };
 
@@ -33,7 +35,7 @@ export const skills = [
   
   // Databases
   { name: "MongoDB", category: "database", level: "intermediate" },
-  { name: "Supabase", category: "database", level: "intermediate" },
+  { name: "Supabase", category: "database", level: "advanced" },
   { name: "Airtable", category: "database", level: "advanced" },
   
   // No-Code Tools & Automation
@@ -159,9 +161,27 @@ export const projects = [
 
 export const education = [
   {
-    degree: "Bachelor of Technology (B.Tech)",
-    institution: "UIET CSJM University",
-    duration: "2020 - 2024",
-    location: "Kanpur, Uttar Pradesh"
-  }
+    degree: "Bachelor of Technology (B.Tech) in Information Technology",
+    institution: "UIET CSJM University, Kanpur",
+    duration: "Nov 2020 - Jun 2024",
+    location: "Kanpur, Uttar Pradesh",
+    details:
+      "Graduated with strong foundations in software engineering, data structures & algorithms, object-oriented design, operating systems, DBMS, and modern web technologies. Led and contributed to practical projects, developed problem‑solving skills, and honed an industry‑oriented mindset through continuous learning and hands‑on development.",
+  },
+  {
+    degree: "Intermediate (PCM)",
+    institution: "Government Inter College, Basti",
+    duration: "Jun 2020",
+    location: "Basti, Uttar Pradesh",
+    details:
+      "Completed higher secondary with a focus on Physics, Chemistry, and Mathematics, building strong analytical reasoning and quantitative problem‑solving skills that translated well into computer science and software development.",
+  },
+  {
+    degree: "High School",
+    institution: "R.K. Educational Academy, Tema Rahmat, Sant Kabir Nagar",
+    duration: "Apr 2018",
+    location: "Sant Kabir Nagar, Uttar Pradesh",
+    details:
+      "Completed secondary education with a foundation in core sciences and a creative inclination toward design and drawing, encouraging a balanced approach to technical precision and user‑centric thinking.",
+  },
 ];

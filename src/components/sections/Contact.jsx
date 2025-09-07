@@ -1,6 +1,7 @@
 import { useState } from 'react';
 import { Mail, Phone, MapPin, Linkedin, Send, CheckCircle, Github, ExternalLink } from 'lucide-react';
 import { personalInfo } from '@/data/personalInfo';
+import toast from 'react-hot-toast';
 
 const Contact = () => {
   const [formData, setFormData] = useState({
@@ -9,6 +10,7 @@ const Contact = () => {
     subject: '',
     message: ''
   });
+  const [isSubmitting, setIsSubmitting] = useState(false);
 
   const handleInputChange = (e) => {
     const { name, value } = e.target;
@@ -18,10 +20,62 @@ const Contact = () => {
     }));
   };
 
-  const handleSubmit = (e) => {
+
+  const handleSubmit = async (e) => {
     e.preventDefault();
-    // Handle form submission here
-    console.log('Form submitted:', formData);
+    setIsSubmitting(true);
+    
+    const formDataToSend = new FormData();
+    formDataToSend.append("access_key", "7cf6d6aa-a7aa-481d-8458-77371951aecb");
+    formDataToSend.append("name", formData.name);
+    formDataToSend.append("email", formData.email);
+    formDataToSend.append("subject", formData.subject);
+    formDataToSend.append("message", formData.message);
+
+    try {
+      const response = await fetch("https://api.web3forms.com/submit", {
+        method: "POST",
+        body: formDataToSend
+      });
+
+      const data = await response.json();
+
+      if (data.success) {
+        toast.success("Form Submitted Successfully", {
+          duration: 4000,
+          iconTheme: {
+            primary: '#10b981',
+            secondary: '#fff',
+          },
+        });
+        setFormData({
+          name: '',
+          email: '',
+          subject: '',
+          message: ''
+        });
+      } else {
+        console.log("Error", data);
+        toast.error(data.message || "Something went wrong. Please try again.", {
+          duration: 4000,
+          iconTheme: {
+            primary: '#ef4444',
+            secondary: '#fff',
+          },
+        });
+      }
+    } catch (error) {
+      console.log("Error", error);
+      toast.error("Something went wrong. Please try again.", {
+        duration: 4000,
+        iconTheme: {
+          primary: '#ef4444',
+          secondary: '#fff',
+        },
+      });
+    } finally {
+      setIsSubmitting(false);
+    }
   };
 
   const contactMethods = [
@@ -50,13 +104,13 @@ const Contact = () => {
       icon: Linkedin,
       title: 'LinkedIn',
       value: 'Connect with me',
-      href: '#',
+      href: 'https://www.linkedin.com/in/nitinbharti1163/',
       description: 'Professional networking'
     }
   ];
 
   return (
-    <section id="contact" className="py-12 sm:py-16 lg:py-20 bg-white dark:bg-gray-900 relative overflow-hidden">
+    <section id="contact" className="py-12 sm:py-16 md:py-20 lg:py-24 bg-white dark:bg-gray-900 relative overflow-hidden">
       {/* Background Pattern - Matching other sections */}
       {/* <div className="absolute inset-0 bg-gradient-to-br from-emerald-50/50 to-cyan-50/50 dark:from-emerald-900/10 dark:to-cyan-900/10"></div>
       <div className="absolute top-0 left-0 w-72 h-72 bg-gradient-to-br from-emerald-200/20 to-cyan-200/20 dark:from-emerald-700/20 dark:to-cyan-700/20 rounded-full -translate-x-36 -translate-y-36"></div>
@@ -67,9 +121,9 @@ const Contact = () => {
         <div className="max-w-7xl mx-auto">
           {/* Section Header */}
           <div className="text-center mb-8 sm:mb-12 lg:mb-16">
-            <div className="inline-flex items-center px-4 py-2 bg-emerald-100 dark:bg-emerald-900/30 text-emerald-700 dark:text-emerald-300 text-sm font-medium rounded-full mb-4 sm:mb-6 border border-emerald-200 dark:border-emerald-700">
-              <span className="w-2 h-2 bg-emerald-500 rounded-full mr-2 animate-pulse"></span>
-              Get In Touch
+            <div className="inline-flex items-center px-3 py-2 sm:px-4 sm:py-2 bg-gradient-to-r from-emerald-100 to-cyan-100 dark:from-emerald-900/30 dark:to-cyan-900/30 rounded-full mb-4 sm:mb-6">
+              <Mail className="w-3 h-3 sm:w-4 sm:h-4 text-emerald-600 dark:text-emerald-400 mr-2" />
+              <span className="text-xs sm:text-sm font-medium text-emerald-700 dark:text-emerald-300">Get In Touch</span>
             </div>
             <h2 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold mb-2 sm:mb-3 bg-gradient-to-r from-white to-emerald-400 dark:from-gray-100 dark:to-emerald-400 bg-clip-text text-transparent leading-normal">
               Let's Work Together
@@ -99,22 +153,22 @@ const Contact = () => {
                       {/* Card Glow Effect */}
                       <div className="absolute -inset-0.5 bg-gradient-to-r from-emerald-500 to-cyan-500 rounded-xl blur opacity-0 group-hover:opacity-20 transition duration-500"></div>
                       
-                      <div className="relative bg-white dark:bg-gray-800 p-3 sm:p-4 lg:p-6 rounded-lg sm:rounded-xl shadow-lg hover:shadow-xl transition-all duration-300 border border-gray-100 dark:border-gray-700 hover:border-emerald-200 dark:hover:border-emerald-700 overflow-hidden h-full">
-                        <div className="flex items-start space-x-2 sm:space-x-3 lg:space-x-4">
+                      <div className="relative bg-white dark:bg-gray-800 p-2.5 sm:p-4 lg:p-6 rounded-lg sm:rounded-xl shadow-lg hover:shadow-xl transition-all duration-300 border border-gray-100 dark:border-gray-700 hover:border-emerald-200 dark:hover:border-emerald-700 overflow-hidden h-full">
+                        <div className="flex flex-col sm:flex-row items-center sm:items-start space-y-2 sm:space-y-0 sm:space-x-3 lg:space-x-4">
                           <div className="w-7 h-7 sm:w-8 sm:h-8 lg:w-10 lg:h-10 bg-emerald-100 dark:bg-emerald-900/30 rounded-lg sm:rounded-xl flex items-center justify-center group-hover:scale-110 transition-transform duration-300 flex-shrink-0">
                             <IconComponent className="w-3.5 h-3.5 sm:w-4 sm:h-4 lg:w-5 lg:h-5 text-emerald-600 dark:text-emerald-400" />
                           </div>
-                          <div className="flex-1 min-w-0">
+                          <div className="flex-1 min-w-0 text-center sm:text-left">
                             <h4 className="font-semibold text-xs sm:text-sm lg:text-base text-gray-900 dark:text-white mb-1">{method.title}</h4>
-                            <a 
-                              href={method.href}
-                              className="text-emerald-600 dark:text-emerald-400 hover:text-emerald-700 dark:hover:text-emerald-300 text-xs sm:text-sm lg:text-base block mb-1 transition-colors break-all"
-                            >
-                              {method.value}
-                            </a>
+                          <a 
+                            href={method.href}
+                              className="text-emerald-600 dark:text-emerald-400 hover:text-emerald-700 dark:hover:text-emerald-300 text-xs sm:text-sm lg:text-base block mb-1 transition-colors break-all leading-tight"
+                          >
+                            {method.value}
+                          </a>
                             <p className="text-xs sm:text-sm text-gray-500 dark:text-gray-400 leading-tight">
-                              {method.description}
-                            </p>
+                            {method.description}
+                          </p>
                           </div>
                         </div>
                       </div>
@@ -129,7 +183,7 @@ const Contact = () => {
                 
                 <div className="relative bg-white dark:bg-gray-800 p-3 sm:p-4 lg:p-6 rounded-lg sm:rounded-xl shadow-lg hover:shadow-xl transition-all duration-300 border border-gray-100 dark:border-gray-700 hover:border-emerald-200 dark:hover:border-emerald-700 overflow-hidden">
                   <div className="flex items-center space-x-2 sm:space-x-3 lg:space-x-4">
-                    <div className="w-7 h-7 sm:w-8 sm:h-8 lg:w-10 lg:h-10 bg-emerald-100 dark:bg-emerald-900/30 rounded-lg sm:rounded-xl flex items-center justify-center flex-shrink-0">
+                    <div className="w-7 h-7 sm:w-8 sm:h-8 lg:w-10 lg:h-10 bg-emerald-100 dark:bg-emerald-900/30 rounded-lg sm:rounded-xl flex items-center justify-center group-hover:scale-110 transition-transform duration-300 flex-shrink-0">
                       <CheckCircle className="w-3.5 h-3.5 sm:w-4 sm:h-4 lg:w-5 lg:h-5 text-emerald-600 dark:text-emerald-400" />
                     </div>
                     <div className="flex-1 min-w-0">
@@ -155,82 +209,86 @@ const Contact = () => {
                   </p>
                 </div>
 
-                <form onSubmit={handleSubmit} className="space-y-2 sm:space-y-3 flex-1 flex flex-col">
-                  <div className="flex-1 space-y-2 sm:space-y-3">
-                    <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 sm:gap-4">
-                      <div>
-                        <label htmlFor="name" className="block text-xs sm:text-sm font-medium text-gray-700 dark:text-gray-300 mb-1 sm:mb-2">
-                          Name <span className="text-red-500">*</span>
-                        </label>
-                        <input
-                          type="text"
-                          id="name"
-                          name="name"
-                          value={formData.name}
-                          onChange={handleInputChange}
-                          required
-                          className="w-full px-3 py-2 border border-gray-200 dark:border-gray-600 rounded-lg bg-white dark:bg-gray-700 text-xs sm:text-sm text-gray-900 dark:text-white focus:outline-none focus:ring-2 focus:ring-emerald-500 focus:border-transparent transition-colors"
-                          placeholder="Your name"
-                        />
-                      </div>
-                      <div>
-                        <label htmlFor="email" className="block text-xs sm:text-sm font-medium text-gray-700 dark:text-gray-300 mb-1 sm:mb-2">
-                          Email <span className="text-red-500">*</span>
-                        </label>
-                        <input
-                          type="email"
-                          id="email"
-                          name="email"
-                          value={formData.email}
-                          onChange={handleInputChange}
-                          required
-                          className="w-full px-3 py-2 border border-gray-200 dark:border-gray-600 rounded-lg bg-white dark:bg-gray-700 text-xs sm:text-sm text-gray-900 dark:text-white focus:outline-none focus:ring-2 focus:ring-emerald-500 focus:border-transparent transition-colors"
-                          placeholder="your.email@example.com"
-                        />
-                      </div>
-                    </div>
-
+                <form onSubmit={handleSubmit} className="flex-1 flex flex-col space-y-2 sm:space-y-3">
+                  <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 sm:gap-4">
                     <div>
-                      <label htmlFor="subject" className="block text-xs sm:text-sm font-medium text-gray-700 dark:text-gray-300 mb-1 sm:mb-2">
-                        Subject <span className="text-red-500">*</span>
+                      <label htmlFor="name" className="block text-xs sm:text-sm font-medium text-gray-700 dark:text-gray-300 mb-1 sm:mb-2">
+                        Name <span className="text-red-500">*</span>
                       </label>
                       <input
                         type="text"
-                        id="subject"
-                        name="subject"
-                        value={formData.subject}
+                        id="name"
+                        name="name"
+                        value={formData.name}
                         onChange={handleInputChange}
                         required
                         className="w-full px-3 py-2 border border-gray-200 dark:border-gray-600 rounded-lg bg-white dark:bg-gray-700 text-xs sm:text-sm text-gray-900 dark:text-white focus:outline-none focus:ring-2 focus:ring-emerald-500 focus:border-transparent transition-colors"
-                        placeholder="What's this about?"
+                        placeholder="Your name"
                       />
                     </div>
-
                     <div>
-                      <label htmlFor="message" className="block text-xs sm:text-sm font-medium text-gray-700 dark:text-gray-300 mb-1 sm:mb-2">
-                        Message <span className="text-red-500">*</span>
+                      <label htmlFor="email" className="block text-xs sm:text-sm font-medium text-gray-700 dark:text-gray-300 mb-1 sm:mb-2">
+                        Email <span className="text-red-500">*</span>
                       </label>
-                      <textarea
-                        id="message"
-                        name="message"
-                        value={formData.message}
+                      <input
+                        type="email"
+                        id="email"
+                        name="email"
+                        value={formData.email}
                         onChange={handleInputChange}
                         required
-                        rows={6}
-                        className="w-full px-3 py-2 border border-gray-200 dark:border-gray-600 rounded-lg bg-white dark:bg-gray-700 text-xs sm:text-sm text-gray-900 dark:text-white focus:outline-none focus:ring-2 focus:ring-emerald-500 focus:border-transparent transition-colors resize-none"
-                        placeholder="Tell me about your project or just say hello!"
+                        className="w-full px-3 py-2 border border-gray-200 dark:border-gray-600 rounded-lg bg-white dark:bg-gray-700 text-xs sm:text-sm text-gray-900 dark:text-white focus:outline-none focus:ring-2 focus:ring-emerald-500 focus:border-transparent transition-colors"
+                        placeholder="your.email@example.com"
                       />
                     </div>
                   </div>
 
-                  <button
-                    type="submit"
-                    className="group/btn relative w-full flex items-center justify-center px-4 py-2 sm:px-6 sm:py-2.5 text-xs sm:text-sm font-semibold text-white bg-gradient-to-r from-emerald-500 to-cyan-500 hover:from-emerald-400 hover:to-cyan-400 rounded-lg transition-all duration-300 shadow-lg hover:shadow-xl hover:shadow-emerald-500/20 overflow-hidden"
-                  >
-                    <div className="absolute inset-0 bg-gradient-to-r from-white/10 to-white/5 opacity-0 group-hover/btn:opacity-100 transition-opacity duration-300"></div>
-                    <Send className="w-3 h-3 sm:w-4 sm:h-4 lg:w-5 lg:h-5 mr-1.5 sm:mr-2 text-white relative z-10 group-hover/btn:scale-110 transition-transform duration-300" />
-                    <span className="text-white relative z-10 group-hover/btn:translate-x-0.5 transition-transform duration-300">Send Message</span>
-                  </button>
+                  <div>
+                    <label htmlFor="subject" className="block text-xs sm:text-sm font-medium text-gray-700 dark:text-gray-300 mb-1 sm:mb-2">
+                      Subject <span className="text-red-500">*</span>
+                    </label>
+                    <input
+                      type="text"
+                      id="subject"
+                      name="subject"
+                      value={formData.subject}
+                      onChange={handleInputChange}
+                      required
+                      className="w-full px-3 py-2 border border-gray-200 dark:border-gray-600 rounded-lg bg-white dark:bg-gray-700 text-xs sm:text-sm text-gray-900 dark:text-white focus:outline-none focus:ring-2 focus:ring-emerald-500 focus:border-transparent transition-colors"
+                      placeholder="What's this about?"
+                    />
+                  </div>
+
+                  <div className="flex-1 flex flex-col">
+                    <label htmlFor="message" className="block text-xs sm:text-sm font-medium text-gray-700 dark:text-gray-300 mb-1 sm:mb-2">
+                      Message <span className="text-red-500">*</span>
+                    </label>
+                    <textarea
+                      id="message"
+                      name="message"
+                      value={formData.message}
+                      onChange={handleInputChange}
+                      required
+                      className="flex-1 w-full px-3 py-2 border border-gray-200 dark:border-gray-600 rounded-lg bg-white dark:bg-gray-700 text-xs sm:text-sm text-gray-900 dark:text-white focus:outline-none focus:ring-2 focus:ring-emerald-500 focus:border-transparent transition-colors resize-none min-h-[120px]"
+                      placeholder="Tell me about your project or just say hello!"
+                    />
+                  </div>
+
+                   <button
+                     type="submit"
+                     disabled={isSubmitting}
+                     className="group/btn relative w-full flex items-center justify-center px-3 py-2 sm:px-6 sm:py-2.5 text-xs sm:text-sm font-semibold text-white bg-gradient-to-r from-emerald-500 to-cyan-500 hover:from-emerald-400 hover:to-cyan-400 disabled:from-emerald-300 disabled:to-cyan-300 disabled:cursor-not-allowed rounded-lg transition-all duration-300 shadow-lg hover:shadow-xl hover:shadow-emerald-500/20 overflow-hidden"
+                   >
+                     <div className="absolute inset-0 bg-gradient-to-r from-white/10 to-white/5 opacity-0 group-hover/btn:opacity-100 transition-opacity duration-300"></div>
+                     {isSubmitting ? (
+                       <div className="w-3 h-3 sm:w-4 sm:h-4 lg:w-5 lg:h-5 mr-1.5 sm:mr-2 border-2 border-white border-t-transparent rounded-full animate-spin relative z-10"></div>
+                     ) : (
+                       <Send className="w-3 h-3 sm:w-4 sm:h-4 lg:w-5 lg:h-5 mr-1.5 sm:mr-2 text-white relative z-10 group-hover/btn:scale-110 transition-transform duration-300" />
+                     )}
+                     <span className="text-white relative z-10 group-hover/btn:translate-x-0.5 transition-transform duration-300">
+                       {isSubmitting ? 'Sending...' : 'Send Message'}
+                     </span>
+                   </button>
                 </form>
               </div>
             </div>

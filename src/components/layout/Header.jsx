@@ -19,6 +19,7 @@ const Header = () => {
   const navigationItems = [
     { name: 'Home', href: '#home' },
     { name: 'About', href: '#about' },
+    { name: 'Education', href: '#education' },
     { name: 'Skills', href: '#skills' },
     { name: 'Experience', href: '#experience' },
     { name: 'Projects', href: '#projects' },
@@ -38,6 +39,15 @@ const Header = () => {
   const scrollToSection = (sectionId) => {
     smoothScrollTo(sectionId);
     setIsMenuOpen(false);
+  };
+
+  const handleDownloadCV = () => {
+    const link = document.createElement('a');
+    link.href = '/Nitin_Bharti.pdf';
+    link.download = 'Nitin_Bharti.pdf';
+    document.body.appendChild(link);
+    link.click();
+    document.body.removeChild(link);
   };
 
   return (
@@ -64,7 +74,7 @@ const Header = () => {
             </div>
             
             {/* Navigation - Center */}
-            <nav className="hidden lg:flex items-center space-x-8 absolute left-1/2 transform -translate-x-1/2 -ml-8">
+            <nav className="hidden xl:flex items-center space-x-8 absolute left-1/2 transform -translate-x-1/2 -ml-8">
               {navigationItems.map((item) => (
                 <a 
                   key={item.name}
@@ -85,8 +95,9 @@ const Header = () => {
             {/* CTA Buttons - Right */}
             <div className="flex items-center space-x-1 sm:space-x-2 flex-shrink-0 ml-auto">
               {/* Desktop CTA Buttons */}
-              <div className="hidden lg:flex items-center space-x-4">
+              <div className="hidden xl:flex items-center space-x-4">
                 <button 
+                  onClick={handleDownloadCV}
                   className="group relative flex items-center px-6 py-3 text-sm font-semibold text-white bg-gradient-to-r from-gray-700 to-gray-800 hover:from-gray-600 hover:to-gray-700 transition-all duration-300 cursor-pointer border border-gray-600 hover:border-gray-500 rounded-xl shadow-lg hover:shadow-xl"
                 >
                   <Download className="w-4 h-4 mr-2 group-hover:scale-110 transition-transform duration-300" />
@@ -104,7 +115,7 @@ const Header = () => {
 
               {/* Mobile/Tablet menu button */}
               <button
-                className="lg:hidden p-2 text-white hover:text-white rounded-lg transition-all duration-300 cursor-pointer ml-1"
+                className="xl:hidden p-2 text-white hover:text-white rounded-lg transition-all duration-300 cursor-pointer ml-1"
                 onClick={() => setIsMenuOpen(!isMenuOpen)}
                 style={{ 
                   backgroundColor: 'rgba(255, 255, 255, 0.15)', 
@@ -124,7 +135,7 @@ const Header = () => {
 
         {/* Mobile Navigation */}
         {isMenuOpen && (
-          <div className="lg:hidden absolute top-full left-0 right-0 mt-2 bg-white/95 dark:bg-gray-900/95 backdrop-blur-xl rounded-2xl border border-gray-200/50 dark:border-gray-700/50 z-[60] shadow-xl shadow-gray-500/20 dark:shadow-black/40 animate-in slide-in-from-top-2 duration-300">
+          <div className="xl:hidden absolute top-full left-0 right-0 mt-2 bg-white/95 dark:bg-gray-900/95 backdrop-blur-xl rounded-2xl border border-gray-200/50 dark:border-gray-700/50 z-[60] shadow-xl shadow-gray-500/20 dark:shadow-black/40 animate-in slide-in-from-top-2 duration-300">
             <div className="p-3">
               {/* Navigation Links */}
               <div className="space-y-1 mb-4">
@@ -144,6 +155,7 @@ const Header = () => {
               {/* CTA Buttons */}
               <div className="flex space-x-2">
                 <button 
+                  onClick={handleDownloadCV}
                   className="group relative flex-1 flex items-center justify-center px-3 py-2 text-xs font-semibold text-white bg-gradient-to-r from-gray-700 to-gray-800 hover:from-gray-600 hover:to-gray-700 border border-gray-600 hover:border-gray-500 rounded-lg transition-all duration-300 overflow-hidden shadow-lg hover:shadow-xl"
                 >
                   <Download className="w-3 h-3 mr-1.5 group-hover:scale-110 transition-transform duration-300" />

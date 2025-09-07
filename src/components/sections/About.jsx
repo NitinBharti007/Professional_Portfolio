@@ -75,7 +75,7 @@ const About = () => {
     { 
       icon: GraduationCap, 
       title: "B.Tech Information Technology", 
-      company: "University", 
+      company: "UIET CSJM University, Kanpur", 
       period: "Graduated",
       description: "Strong foundation in programming, software development, and information systems. Comprehensive understanding of database management, networking, and system architecture principles.",
       color: "from-blue-500 to-purple-500"
