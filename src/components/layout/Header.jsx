@@ -74,7 +74,7 @@ const Header = () => {
             </div>
             
             {/* Navigation - Center */}
-            <nav className="hidden xl:flex items-center space-x-8 absolute left-1/2 transform -translate-x-1/2 -ml-8">
+            <nav className="hidden xl:flex items-center space-x-5 absolute left-1/2 transform -translate-x-1/2 -ml-8">
               {navigationItems.map((item) => (
                 <a 
                   key={item.name}
