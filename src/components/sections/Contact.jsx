@@ -98,7 +98,7 @@ const Contact = () => {
       title: 'Location',
       value: personalInfo.location,
       href: '#',
-      description: 'Based in Noida, India'
+      description: 'Based in Agra, India'
     },
     {
       icon: Linkedin,
@@ -111,12 +111,6 @@ const Contact = () => {
 
   return (
     <section id="contact" className="py-12 sm:py-16 md:py-20 lg:py-24 bg-white dark:bg-gray-900 relative overflow-hidden">
-      {/* Background Pattern - Matching other sections */}
-      {/* <div className="absolute inset-0 bg-gradient-to-br from-emerald-50/50 to-cyan-50/50 dark:from-emerald-900/10 dark:to-cyan-900/10"></div>
-      <div className="absolute top-0 left-0 w-72 h-72 bg-gradient-to-br from-emerald-200/20 to-cyan-200/20 dark:from-emerald-700/20 dark:to-cyan-700/20 rounded-full -translate-x-36 -translate-y-36"></div>
-      <div className="absolute bottom-0 right-0 w-96 h-96 bg-gradient-to-tl from-emerald-200/20 to-cyan-200/20 dark:from-emerald-700/20 dark:to-cyan-700/20 rounded-full translate-x-48 translate-y-48"></div>
-      <div className="absolute top-1/2 left-1/2 w-64 h-64 bg-gradient-to-r from-emerald-200/10 to-cyan-200/10 dark:from-emerald-700/10 dark:to-cyan-700/10 rounded-full -translate-x-32 -translate-y-32 blur-3xl"></div> */}
-
       <div className="container mx-auto px-4 sm:px-6 md:px-8 relative z-10">
         <div className="max-w-7xl mx-auto">
           {/* Section Header */}
@@ -160,12 +154,16 @@ const Contact = () => {
                           </div>
                           <div className="flex-1 min-w-0 text-center sm:text-left">
                             <h4 className="font-semibold text-xs sm:text-sm lg:text-base text-gray-900 dark:text-white mb-1">{method.title}</h4>
-                          <a 
-                            href={method.href}
-                              className="text-emerald-600 dark:text-emerald-400 hover:text-emerald-700 dark:hover:text-emerald-300 text-xs sm:text-sm lg:text-base block mb-1 transition-colors break-all leading-tight"
+                          <span 
+                            onClick={() => {
+                              if (method.href.startsWith('mailto:') || method.href.startsWith('tel:') || method.href.startsWith('http')) {
+                                window.open(method.href, '_blank');
+                              }
+                            }}
+                            className="text-emerald-600 dark:text-emerald-400 hover:text-emerald-700 dark:hover:text-emerald-300 text-xs sm:text-sm lg:text-base block mb-1 transition-colors break-all leading-tight cursor-pointer"
                           >
                             {method.value}
-                          </a>
+                          </span>
                             <p className="text-xs sm:text-sm text-gray-500 dark:text-gray-400 leading-tight">
                             {method.description}
                           </p>
