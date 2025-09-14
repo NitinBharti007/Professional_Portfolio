@@ -1,4 +1,5 @@
 import { useState, useEffect } from 'react';
+import { useNavigate, useLocation } from 'react-router-dom';
 import { Button } from '@/components/ui/button';
 import { Badge } from '@/components/ui/badge';
 import { smoothScrollTo } from '@/utils/smoothScroll';
@@ -15,6 +16,8 @@ import { Menu, X, User, Download, Mail } from 'lucide-react';
 const Header = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [isScrolled, setIsScrolled] = useState(false);
+  const navigate = useNavigate();
+  const location = useLocation();
 
   const navigationItems = [
     { name: 'Home', href: '#home' },
@@ -23,7 +26,7 @@ const Header = () => {
     { name: 'Skills', href: '#skills' },
     { name: 'Experience', href: '#experience' },
     { name: 'Projects', href: '#projects' },
-    { name: 'Contact', href: '#contact' },
+    { name: 'Blogs', href: '#blog' },
   ];
 
   useEffect(() => {
@@ -36,8 +39,53 @@ const Header = () => {
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
 
+  // Handle scrolling when navigating to home page with hash
+  useEffect(() => {
+    if (location.pathname === '/' && location.hash) {
+      const elementId = location.hash.replace('#', '');
+      setTimeout(() => {
+        smoothScrollTo(elementId);
+      }, 100);
+    }
+  }, [location]);
+
   const scrollToSection = (sectionId) => {
-    smoothScrollTo(sectionId);
+    if (sectionId.startsWith('#')) {
+      const elementId = sectionId.replace('#', '');
+      
+      // If we're on the home page, scroll directly
+      if (location.pathname === '/') {
+        smoothScrollTo(elementId);
+      } else {
+        // If we're on another page (like blog), navigate to home first
+        navigate('/', { replace: true });
+        // Use a longer timeout to ensure the page has loaded
+        setTimeout(() => {
+          smoothScrollTo(elementId);
+        }, 500);
+      }
+    } else if (sectionId.startsWith('/')) {
+      // Only allow routing for blog and admin pages
+      if (sectionId.startsWith('/blog') || sectionId.startsWith('/admin')) {
+        navigate(sectionId);
+      } else {
+        // For other routes, go to home and scroll to section
+        navigate('/', { replace: true });
+        setTimeout(() => {
+          smoothScrollTo(sectionId.replace('/', ''));
+        }, 500);
+      }
+    } else {
+      // For non-hash, non-route items, scroll to section on home page
+      if (location.pathname === '/') {
+        smoothScrollTo(sectionId);
+      } else {
+        navigate('/', { replace: true });
+        setTimeout(() => {
+          smoothScrollTo(sectionId);
+        }, 500);
+      }
+    }
     setIsMenuOpen(false);
   };
 
@@ -81,7 +129,7 @@ const Header = () => {
                   href={item.href}
                   onClick={(e) => {
                     e.preventDefault();
-                    scrollToSection(item.href.replace('#', ''));
+                    scrollToSection(item.href);
                   }}
                   className="relative text-base font-normal text-white/80 hover:text-white transition-colors duration-200 cursor-pointer no-underline hover:no-underline focus:no-underline active:no-underline visited:no-underline group"
                   style={{ color: 'rgba(255, 255, 255, 0.8)' }}
@@ -142,7 +190,7 @@ const Header = () => {
                 {navigationItems.map((item) => (
                   <button 
                     key={item.name}
-                    onClick={() => scrollToSection(item.href.replace('#', ''))}
+                    onClick={() => scrollToSection(item.href)}
                     className="group relative flex items-center w-full px-4 py-3 text-base font-medium text-gray-700 dark:text-white/90 hover:text-gray-900 dark:hover:text-white transition-all duration-300 bg-transparent hover:bg-transparent focus:bg-transparent active:bg-transparent"
                     style={{ backgroundColor: 'transparent' }}
                   >
