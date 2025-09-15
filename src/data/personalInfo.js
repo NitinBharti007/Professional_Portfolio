@@ -10,7 +10,7 @@ export const personalInfo = {
   portfolio: "nitinbharti.in",
   github: "https://github.com/NitinBharti007",
   linkedin: "https://www.linkedin.com/in/nitinbharti1163/",
-  resume: "/Nitin_Bharti.pdf",
+  resume: "./Nitin_Bharti.pdf",
   summary: "I am a Software Developer specializing in MERN stack and no-code platforms. Building business-focused web applications and internal tools that solve real operational challenges. Passionate about creating impactful solutions for startups and fast-paced environments."
 };
 

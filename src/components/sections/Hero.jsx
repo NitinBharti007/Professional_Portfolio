@@ -209,7 +209,7 @@ const Hero = () => {
                 {/* Photo with enhanced styling */}
                 <div className="w-full h-full rounded-full overflow-hidden border-2 sm:border-4 border-emerald-500/30 shadow-2xl shadow-emerald-500/20">
                   <img
-                    src="/photo.jpg"
+                    src="./photo.jpg"
                     alt="Nitin Bharti - Software Developer"
                     className="w-full h-full object-cover"
                   />
@@ -228,7 +228,7 @@ const Hero = () => {
                 <div className="w-12 h-12 sm:w-14 sm:h-14 lg:w-16 lg:h-16 bg-gradient-to-br from-blue-500/20 to-cyan-500/20 backdrop-blur-sm border border-blue-400/40 rounded-xl flex items-center justify-center shadow-xl shadow-blue-500/30 animate-float">
                   <div className="w-6 h-6 sm:w-8 sm:h-8 bg-white rounded-lg flex items-center justify-center p-1 shadow-lg">
                     <img
-                      src="/react.png"
+                      src="./react.png"
                       alt="React"
                       className="w-full h-full object-contain"
                     />
@@ -239,7 +239,7 @@ const Hero = () => {
                 <div className="w-12 h-12 sm:w-14 sm:h-14 lg:w-16 lg:h-16 bg-gradient-to-br from-orange-500/20 to-red-500/20 backdrop-blur-sm border border-orange-400/40 rounded-xl flex items-center justify-center shadow-xl shadow-orange-500/30 animate-float-delayed">
                   <div className="w-6 h-6 sm:w-8 sm:h-8 bg-white rounded-lg flex items-center justify-center p-1 shadow-lg">
                     <img
-                      src="/HTML.png"
+                      src="./HTML.png"
                       alt="HTML"
                       className="w-full h-full object-contain"
                     />
@@ -250,7 +250,7 @@ const Hero = () => {
                 <div className="w-12 h-12 sm:w-14 sm:h-14 lg:w-16 lg:h-16 bg-gradient-to-br from-green-500/20 to-emerald-500/20 backdrop-blur-sm border border-green-400/40 rounded-xl flex items-center justify-center shadow-xl shadow-green-500/30 animate-float-delayed">
                   <div className="w-6 h-6 sm:w-8 sm:h-8 bg-white rounded-lg flex items-center justify-center p-1 shadow-lg">
                     <img
-                      src="/node-logo.png"
+                      src="./node-logo.png"
                       alt="Node.js"
                       className="w-full h-full object-contain"
                     />
@@ -264,7 +264,7 @@ const Hero = () => {
                 <div className="w-12 h-12 sm:w-14 sm:h-14 lg:w-16 lg:h-16 bg-gradient-to-br from-yellow-500/20 to-orange-500/20 backdrop-blur-sm border border-yellow-400/40 rounded-xl flex items-center justify-center shadow-xl shadow-yellow-500/30 animate-float">
                   <div className="w-6 h-6 sm:w-8 sm:h-8 bg-white rounded-lg flex items-center justify-center p-1 shadow-lg">
                     <img
-                      src="/javascript.png"
+                      src="./javascript.png"
                       alt="JavaScript"
                       className="w-full h-full object-contain"
                     />
@@ -275,7 +275,7 @@ const Hero = () => {
                 <div className="w-12 h-12 sm:w-14 sm:h-14 lg:w-16 lg:h-16 bg-gradient-to-br from-green-600/20 to-green-800/20 backdrop-blur-sm border border-green-400/40 rounded-xl flex items-center justify-center shadow-xl shadow-green-500/30 animate-float">
                   <div className="w-6 h-6 sm:w-8 sm:h-8 bg-white rounded-lg flex items-center justify-center p-1 shadow-lg">
                     <img
-                      src="/mongodb.png"
+                      src="./mongodb.png"
                       alt="MongoDB"
                       className="w-full h-full object-contain"
                     />
@@ -286,7 +286,7 @@ const Hero = () => {
                 <div className="w-12 h-12 sm:w-14 sm:h-14 lg:w-16 lg:h-16 bg-gradient-to-br from-blue-500/20 to-cyan-500/20 backdrop-blur-sm border border-blue-400/40 rounded-xl flex items-center justify-center shadow-xl shadow-blue-500/30 animate-float-delayed">
                   <div className="w-6 h-6 sm:w-8 sm:h-8 bg-white rounded-lg flex items-center justify-center p-1 shadow-lg">
                     <img
-                      src="/Airtable.png"
+                      src="./Airtable.png"
                       alt="Airtable"
                       className="w-full h-full object-contain"
                     />
@@ -300,7 +300,7 @@ const Hero = () => {
                 <div className="w-12 h-12 sm:w-14 sm:h-14 lg:w-16 lg:h-16 bg-gradient-to-br from-purple-500/20 to-pink-500/20 backdrop-blur-sm border border-purple-400/40 rounded-xl flex items-center justify-center shadow-xl shadow-purple-500/30 animate-float">
                   <div className="w-6 h-6 sm:w-8 sm:h-8 bg-white rounded-lg flex items-center justify-center p-1 shadow-lg">
                     <img
-                      src="/Redux.png"
+                      src="./Redux.png"
                       alt="Redux"
                       className="w-full h-full object-contain"
                     />
@@ -311,7 +311,7 @@ const Hero = () => {
                 <div className="w-12 h-12 sm:w-14 sm:h-14 lg:w-16 lg:h-16 bg-gradient-to-br from-cyan-500/20 to-blue-500/20 backdrop-blur-sm border border-cyan-400/40 rounded-xl flex items-center justify-center shadow-xl shadow-cyan-500/30 animate-float-delayed">
                   <div className="w-6 h-6 sm:w-8 sm:h-8 bg-white rounded-lg flex items-center justify-center p-1 shadow-lg">
                     <img
-                      src="/API.png"
+                      src="./API.png"
                       alt="API"
                       className="w-full h-full object-contain"
                     />
@@ -322,7 +322,7 @@ const Hero = () => {
                 <div className="w-12 h-12 sm:w-14 sm:h-14 lg:w-16 lg:h-16 bg-gradient-to-br from-pink-500/20 to-rose-500/20 backdrop-blur-sm border border-pink-400/40 rounded-xl flex items-center justify-center shadow-xl shadow-pink-500/30 animate-float">
                   <div className="w-6 h-6 sm:w-8 sm:h-8 bg-white rounded-lg flex items-center justify-center p-1 shadow-lg">
                     <img
-                      src="/Make.png"
+                      src="./Make.png"
                       alt="Make"
                       className="w-full h-full object-contain"
                     />
@@ -336,7 +336,7 @@ const Hero = () => {
                 <div className="w-12 h-12 sm:w-14 sm:h-14 lg:w-16 lg:h-16 bg-gradient-to-br from-emerald-500/20 to-green-500/20 backdrop-blur-sm border border-emerald-400/40 rounded-xl flex items-center justify-center shadow-xl shadow-emerald-500/30 animate-float">
                   <div className="w-6 h-6 sm:w-8 sm:h-8 bg-white rounded-lg flex items-center justify-center p-1 shadow-lg">
                     <img
-                      src="/supabase.png"
+                      src="./supabase.png"
                       alt="Supabase"
                       className="w-full h-full object-contain"
                     />
@@ -347,7 +347,7 @@ const Hero = () => {
                 <div className="w-12 h-12 sm:w-14 sm:h-14 lg:w-16 lg:h-16 bg-gradient-to-br from-indigo-500/20 to-purple-500/20 backdrop-blur-sm border border-indigo-400/40 rounded-xl flex items-center justify-center shadow-xl shadow-indigo-500/30 animate-float-delayed">
                   <div className="w-6 h-6 sm:w-8 sm:h-8 bg-white rounded-lg flex items-center justify-center p-1 shadow-lg">
                     <img
-                      src="/Softr.png"
+                      src="./Softr.png"
                       alt="Softr"
                       className="w-full h-full object-contain"
                     />
@@ -358,7 +358,7 @@ const Hero = () => {
                 <div className="w-12 h-12 sm:w-14 sm:h-14 lg:w-16 lg:h-16 bg-gradient-to-br from-blue-600/20 to-blue-800/20 backdrop-blur-sm border border-blue-400/40 rounded-xl flex items-center justify-center shadow-xl shadow-blue-500/30 animate-float">
                   <div className="w-6 h-6 sm:w-8 sm:h-8 bg-white rounded-lg flex items-center justify-center p-1 shadow-lg">
                     <img
-                      src="/cpp.png"
+                      src="./cpp.png"
                       alt="C++"
                       className="w-full h-full object-contain"
                     />

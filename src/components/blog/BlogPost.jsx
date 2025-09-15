@@ -109,6 +109,21 @@ const BlogPost = () => {
           
           <div className="w-full px-4 sm:px-6 md:px-8 relative z-10">
             <div className="max-w-7xl mx-auto">
+                {/* Cover Image */}
+                {post.cover_image && (
+                  <div className="mb-6 sm:mb-8 w-full">
+                    <img 
+                      src={post.cover_image} 
+                      alt={post.title}
+                      className="w-full h-48 sm:h-64 md:h-80 lg:h-96 object-cover object-center rounded-lg sm:rounded-xl shadow-lg"
+                      style={{ objectPosition: 'center' }}
+                      onError={(e) => {
+                        e.target.style.display = 'none';
+                      }}
+                    />
+                  </div>
+                )}
+
               {/* Article Meta */}
               <div className="flex flex-wrap items-center gap-2 mb-4 sm:mb-6">
                 {(post.categories || []).map(category => (

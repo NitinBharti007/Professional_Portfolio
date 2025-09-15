@@ -69,6 +69,13 @@ const BlogEditor = ({ post, onSave, onCancel }) => {
     const words = formData.content.trim().split(/\s+/).filter(word => word.length > 0);
     setWordCount(words.length);
     setCharCount(formData.content.length);
+    
+    // Auto-calculate read time based on word count (average reading speed: 200 words per minute)
+    const calculatedReadTime = Math.max(1, Math.ceil(words.length / 200));
+    setFormData(prev => ({
+      ...prev,
+      read_time: calculatedReadTime
+    }));
   }, [formData.content]);
 
   const loadCategoriesAndTags = async () => {
@@ -255,27 +262,27 @@ const BlogEditor = ({ post, onSave, onCancel }) => {
   };
 
   return (
-    <div className="fixed inset-0 bg-black/30 backdrop-blur-sm flex items-center justify-center p-4 z-50">
-      <div className="bg-white dark:bg-gray-800 rounded-2xl shadow-2xl w-full max-w-4xl max-h-[90vh] overflow-hidden border border-gray-200 dark:border-gray-700">
+    <div className="fixed inset-0 bg-black/30 backdrop-blur-sm flex items-center justify-center p-2 sm:p-4 z-50">
+      <div className="bg-white dark:bg-gray-800 rounded-lg sm:rounded-2xl shadow-2xl w-full max-w-4xl max-h-[95vh] sm:max-h-[90vh] overflow-hidden border border-gray-200 dark:border-gray-700 mx-2 sm:mx-0">
         {/* Header */}
-        <div className="px-6 py-4 border-b border-gray-200 dark:border-gray-700 bg-gray-50 dark:bg-gray-800/50">
+        <div className="px-3 sm:px-6 py-3 sm:py-4 border-b border-gray-200 dark:border-gray-700 bg-gray-50 dark:bg-gray-800/50">
           <div className="flex items-center justify-between">
-            <div className="flex items-center gap-3">
-              <div className="p-2 bg-emerald-500 rounded-lg">
-                <FileText className="w-5 h-5 text-white" />
+            <div className="flex items-center gap-2 sm:gap-3 min-w-0 flex-1">
+              <div className="p-1.5 sm:p-2 bg-emerald-500 rounded-lg flex-shrink-0">
+                <FileText className="w-4 h-4 sm:w-5 sm:h-5 text-white" />
               </div>
-              <div>
-                <h2 className="text-xl font-bold text-gray-900 dark:text-white">
-              {post ? 'Edit Post' : 'Create New Post'}
-            </h2>
-                <p className="text-sm text-gray-600 dark:text-gray-400">
+              <div className="min-w-0 flex-1">
+                <h2 className="text-lg sm:text-xl font-bold text-gray-900 dark:text-white truncate">
+                  {post ? 'Edit Post' : 'Create New Post'}
+                </h2>
+                <p className="text-xs sm:text-sm text-gray-600 dark:text-gray-400 truncate">
                   {post ? 'Update your blog post' : 'Write and publish a new blog post'}
                 </p>
               </div>
             </div>
             <button
               onClick={onCancel}
-              className="p-2 rounded-lg transition-colors duration-200"
+              className="p-2 rounded-lg transition-colors duration-200 flex-shrink-0 ml-2"
               style={{
                 backgroundColor: 'transparent',
                 color: '#9ca3af'
@@ -289,84 +296,85 @@ const BlogEditor = ({ post, onSave, onCancel }) => {
                 e.target.style.color = '#9ca3af';
               }}
             >
-              <X className="w-5 h-5" />
+              <X className="w-4 h-4 sm:w-5 sm:h-5" />
             </button>
           </div>
         </div>
 
         {/* Steps */}
-        <div className="px-6 py-4 border-b border-gray-200 dark:border-gray-700">
-          <div className="flex items-center justify-center">
-            {steps.map((step, index) => {
-              const isCompleted = currentStep > step.id;
-              const isCurrent = currentStep === step.id;
-              const isClickable = step.id <= currentStep || step.id === 1;
-              
-              
-              return (
-                <div key={step.id} className="flex items-center">
-                  <button
-                    onClick={() => isClickable && goToStep(step.id)}
-                    className={`flex items-center justify-center w-10 h-10 rounded-full border-2 transition-all duration-200 ${
-                      isClickable ? 'cursor-pointer' : 'cursor-not-allowed opacity-50'
-                    }`}
-                    style={{
-                      backgroundColor: isCurrent 
-                        ? '#059669' 
-                        : isCompleted 
-                        ? '#10b981' 
-                        : '#ffffff',
-                      borderColor: isCurrent 
-                        ? '#059669' 
-                        : isCompleted 
-                        ? '#10b981' 
-                        : '#d1d5db',
-                      color: isCurrent || isCompleted 
-                        ? '#ffffff' 
-                        : '#6b7280'
-                    }}
-                    onMouseEnter={(e) => {
-                      if (isClickable && !isCurrent && !isCompleted) {
-                        e.target.style.borderColor = '#059669';
-                        e.target.style.backgroundColor = '#f0fdf4';
-                      }
-                    }}
-                    onMouseLeave={(e) => {
-                      if (isClickable && !isCurrent && !isCompleted) {
-                        e.target.style.borderColor = '#d1d5db';
-                        e.target.style.backgroundColor = '#ffffff';
-                      }
-                    }}
-                    disabled={!isClickable}
-                  >
-                    {isCompleted ? (
-                      <span className="text-white font-bold text-lg">✓</span>
-                    ) : (
-                      <span className="text-sm font-semibold">{step.id}</span>
-                    )}
-                  </button>
-                  
-                  {index < steps.length - 1 && (
-                    <div 
-                      className="h-0.5 transition-colors duration-200"
+        <div className="px-3 sm:px-6 py-3 sm:py-4 border-b border-gray-200 dark:border-gray-700">
+          <div className="flex items-center justify-center overflow-x-auto">
+            <div className="flex items-center space-x-2 sm:space-x-4 min-w-max">
+              {steps.map((step, index) => {
+                const isCompleted = currentStep > step.id;
+                const isCurrent = currentStep === step.id;
+                const isClickable = step.id <= currentStep || step.id === 1;
+                
+                return (
+                  <div key={step.id} className="flex items-center">
+                    <button
+                      onClick={() => isClickable && goToStep(step.id)}
+                      className={`flex items-center justify-center w-8 h-8 sm:w-10 sm:h-10 rounded-full border-2 transition-all duration-200 ${
+                        isClickable ? 'cursor-pointer' : 'cursor-not-allowed opacity-50'
+                      }`}
                       style={{
-                        width: '32px',
-                        backgroundColor: isCompleted ? '#10b981' : '#d1d5db',
-                        marginLeft: '12px',
-                        marginRight: '12px'
+                        backgroundColor: isCurrent 
+                          ? '#059669' 
+                          : isCompleted 
+                          ? '#10b981' 
+                          : '#ffffff',
+                        borderColor: isCurrent 
+                          ? '#059669' 
+                          : isCompleted 
+                          ? '#10b981' 
+                          : '#d1d5db',
+                        color: isCurrent || isCompleted 
+                          ? '#ffffff' 
+                          : '#6b7280'
                       }}
-                    />
-                  )}
-                </div>
-              );
-            })}
+                      onMouseEnter={(e) => {
+                        if (isClickable && !isCurrent && !isCompleted) {
+                          e.target.style.borderColor = '#059669';
+                          e.target.style.backgroundColor = '#f0fdf4';
+                        }
+                      }}
+                      onMouseLeave={(e) => {
+                        if (isClickable && !isCurrent && !isCompleted) {
+                          e.target.style.borderColor = '#d1d5db';
+                          e.target.style.backgroundColor = '#ffffff';
+                        }
+                      }}
+                      disabled={!isClickable}
+                    >
+                      {isCompleted ? (
+                        <span className="text-white font-bold text-sm sm:text-lg">✓</span>
+                      ) : (
+                        <span className="text-xs sm:text-sm font-semibold">{step.id}</span>
+                      )}
+                    </button>
+                    
+                    {index < steps.length - 1 && (
+                      <div 
+                        className="h-0.5 transition-colors duration-200"
+                        style={{
+                          width: '16px',
+                          backgroundColor: isCompleted ? '#10b981' : '#d1d5db',
+                          marginLeft: '8px',
+                          marginRight: '8px'
+                        }}
+                      />
+                    )}
+                  </div>
+                );
+              })}
+            </div>
           </div>
-
-          <div className="text-center mt-3">
-            <span className="text-sm font-medium text-emerald-600 dark:text-emerald-400">
+          
+          <div className="text-center mt-2 sm:mt-3">
+            <span className="text-xs sm:text-sm font-medium text-emerald-600 dark:text-emerald-400">
               {steps[currentStep - 1].title}
             </span>
-            <span className="text-xs text-gray-500 dark:text-gray-400 ml-2">
+            <span className="text-xs text-gray-500 dark:text-gray-400 ml-1 sm:ml-2">
               Step {currentStep} of {steps.length}
             </span>
           </div>
@@ -374,25 +382,25 @@ const BlogEditor = ({ post, onSave, onCancel }) => {
 
         {/* Content */}
         <div 
-          className="flex-1 overflow-y-auto max-h-[50vh]"
+          className="flex-1 overflow-y-auto max-h-[45vh] sm:max-h-[50vh]"
           style={{
             scrollbarWidth: 'thin',
             scrollbarColor: '#d1d5db #f3f4f6'
           }}
         >
-          <div className="p-6">
+          <div className="p-3 sm:p-6">
 
-            <form onSubmit={handleSubmit} className="space-y-5">
+            <form onSubmit={handleSubmit} className="space-y-4 sm:space-y-5">
               {/* General Error Display */}
               {Object.keys(errors).length > 0 && (
-                <div className="bg-red-50 dark:bg-red-900/20 border border-red-200 dark:border-red-800 rounded-lg p-4">
+                <div className="bg-red-50 dark:bg-red-900/20 border border-red-200 dark:border-red-800 rounded-lg p-3 sm:p-4">
                   <div className="flex items-start">
-                    <AlertCircle className="w-5 h-5 text-red-600 dark:text-red-400 mt-0.5 mr-3 flex-shrink-0" />
+                    <AlertCircle className="w-4 h-4 sm:w-5 sm:h-5 text-red-600 dark:text-red-400 mt-0.5 mr-2 sm:mr-3 flex-shrink-0" />
                     <div>
-                      <h4 className="text-sm font-medium text-red-800 dark:text-red-200 mb-2">
+                      <h4 className="text-xs sm:text-sm font-medium text-red-800 dark:text-red-200 mb-1 sm:mb-2">
                         Please fix the following errors:
                       </h4>
-                      <ul className="text-sm text-red-700 dark:text-red-300 space-y-1">
+                      <ul className="text-xs sm:text-sm text-red-700 dark:text-red-300 space-y-1">
                         {errors.title && <li>• {errors.title}</li>}
                         {errors.slug && <li>• {errors.slug}</li>}
                         {errors.content && <li>• {errors.content}</li>}
@@ -405,34 +413,34 @@ const BlogEditor = ({ post, onSave, onCancel }) => {
 
               {/* Step 1: Content */}
               {currentStep === 1 && (
-                <div className="space-y-5">
-                  <div className="grid grid-cols-1 lg:grid-cols-2 gap-5">
+                <div className="space-y-4 sm:space-y-5">
+                  <div className="grid grid-cols-1 lg:grid-cols-2 gap-4 sm:gap-5">
               <div>
-                      <label className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">
-                  Title *
+                      <label className="block text-xs sm:text-sm font-medium text-gray-700 dark:text-gray-300 mb-1 sm:mb-2">
+                  Title <span className="text-red-500">*</span>
                 </label>
                 <input
                   type="text"
                   name="title"
                   value={formData.title}
                   onChange={handleInputChange}
-                        className={`w-full px-4 py-3 bg-white dark:bg-gray-700 border rounded-lg text-gray-900 dark:text-white focus:outline-none focus:ring-2 focus:ring-emerald-500 ${
+                        className={`w-full px-3 sm:px-4 py-2.5 sm:py-3 bg-white dark:bg-gray-700 border rounded-lg text-sm sm:text-base text-gray-900 dark:text-white focus:outline-none focus:ring-2 focus:ring-emerald-500 ${
                           errors.title ? 'border-red-500' : 'border-gray-200 dark:border-gray-600'
                         }`}
                         placeholder="Enter your post title..."
                   required
                 />
                       {errors.title && (
-                        <p className="mt-1 text-sm text-red-600 dark:text-red-400 flex items-center gap-1">
-                          <AlertCircle className="w-4 h-4" />
+                        <p className="mt-1 text-xs sm:text-sm text-red-600 dark:text-red-400 flex items-center gap-1">
+                          <AlertCircle className="w-3 h-3 sm:w-4 sm:h-4" />
                           {errors.title}
                         </p>
                       )}
               </div>
 
               <div>
-                      <label className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">
-                  Slug *
+                      <label className="block text-xs sm:text-sm font-medium text-gray-700 dark:text-gray-300 mb-1 sm:mb-2">
+                  Slug <span className="text-red-500">*</span>
                 </label>
                 <div className="relative">
                   <input
@@ -477,9 +485,9 @@ const BlogEditor = ({ post, onSave, onCancel }) => {
             </div>
 
             <div>
-                    <div className="flex items-center justify-between mb-2">
-                      <label className="block text-sm font-medium text-gray-700 dark:text-gray-300">
-                Content *
+                    <div className="flex items-center justify-between mb-1 sm:mb-2">
+                      <label className="block text-xs sm:text-sm font-medium text-gray-700 dark:text-gray-300">
+                Content <span className="text-red-500">*</span>
               </label>
                       <div className="flex items-center gap-4 text-xs text-gray-500 dark:text-gray-400">
                         <span>{wordCount} words</span>
@@ -512,17 +520,25 @@ const BlogEditor = ({ post, onSave, onCancel }) => {
                 <div className="space-y-5">
                   <div className="grid grid-cols-1 md:grid-cols-2 gap-5">
               <div>
-                      <label className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">
+                      <label className="block text-xs sm:text-sm font-medium text-gray-700 dark:text-gray-300 mb-1 sm:mb-2">
                   Read Time (minutes)
                 </label>
-                <input
-                  type="number"
-                  name="read_time"
-                  value={formData.read_time}
-                  onChange={handleInputChange}
-                  min="1"
-                        className="w-full px-4 py-3 bg-white dark:bg-gray-700 border border-gray-200 dark:border-gray-600 rounded-lg text-gray-900 dark:text-white focus:outline-none focus:ring-2 focus:ring-emerald-500"
-                />
+                <div className="relative">
+                  <input
+                    type="number"
+                    name="read_time"
+                    value={formData.read_time}
+                    onChange={handleInputChange}
+                    min="1"
+                          className="w-full px-3 sm:px-4 py-2.5 sm:py-3 bg-gray-50 dark:bg-gray-600 border border-gray-200 dark:border-gray-600 rounded-lg text-sm sm:text-base text-gray-900 dark:text-white focus:outline-none focus:ring-2 focus:ring-emerald-500"
+                  />
+                  <div className="absolute right-3 top-1/2 transform -translate-y-1/2 text-xs text-gray-500 dark:text-gray-400">
+                    Auto
+                  </div>
+                </div>
+                <p className="mt-1 text-xs text-gray-500 dark:text-gray-400">
+                  Automatically calculated based on content length
+                </p>
               </div>
 
               <div>
@@ -569,8 +585,8 @@ const BlogEditor = ({ post, onSave, onCancel }) => {
 
             {/* Categories */}
             <div>
-                    <label className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-3">
-                      Categories *
+                    <label className="block text-xs sm:text-sm font-medium text-gray-700 dark:text-gray-300 mb-2 sm:mb-3">
+                      Categories <span className="text-red-500">*</span>
               </label>
               <div className="flex flex-wrap gap-2">
                 {(categories || []).map(category => {
@@ -653,24 +669,24 @@ const BlogEditor = ({ post, onSave, onCancel }) => {
         </div>
 
         {/* Footer */}
-        <div className="px-6 py-4 border-t border-gray-200 dark:border-gray-700 bg-gray-50 dark:bg-gray-800/50">
-          <div className="flex flex-col sm:flex-row gap-3 justify-between items-center">
-            <div className="flex items-center gap-4 text-sm text-gray-500 dark:text-gray-400">
+        <div className="px-3 sm:px-6 py-3 sm:py-4 border-t border-gray-200 dark:border-gray-700 bg-gray-50 dark:bg-gray-800/50">
+          <div className="flex flex-col sm:flex-row gap-2 sm:gap-3 justify-between items-center">
+            <div className="flex items-center gap-2 sm:gap-4 text-xs sm:text-sm text-gray-500 dark:text-gray-400">
               <div className="flex items-center gap-1">
-                <Clock className="w-4 h-4" />
-                <span>~{Math.ceil(wordCount / 200)} min read</span>
+                <Clock className="w-3 h-3 sm:w-4 sm:h-4" />
+                <span>~{formData.read_time} min read</span>
               </div>
               <div className="flex items-center gap-1">
-                <FileText className="w-4 h-4" />
+                <FileText className="w-3 h-3 sm:w-4 sm:h-4" />
                 <span>{wordCount} words</span>
               </div>
             </div>
-
+            
             <div className="flex gap-2 w-full sm:w-auto">
               <button
                 type="button"
                 onClick={onCancel}
-                className="px-4 py-2 text-sm font-medium rounded-lg transition-colors duration-200 border"
+                className="px-3 sm:px-4 py-2 text-xs sm:text-sm font-medium rounded-lg transition-colors duration-200 border flex-1 sm:flex-none"
                 style={{ 
                   backgroundColor: '#ffffff',
                   color: '#374151',
@@ -690,7 +706,7 @@ const BlogEditor = ({ post, onSave, onCancel }) => {
                 <button
                   type="button"
                   onClick={prevStep}
-                  className="px-4 py-2 text-sm font-medium rounded-lg transition-colors duration-200 border"
+                  className="px-3 sm:px-4 py-2 text-xs sm:text-sm font-medium rounded-lg transition-colors duration-200 border flex-1 sm:flex-none"
                   style={{ 
                     backgroundColor: '#ffffff',
                     color: '#374151',
@@ -711,7 +727,7 @@ const BlogEditor = ({ post, onSave, onCancel }) => {
                 <button
                   type="button"
                   onClick={nextStep}
-                  className="px-6 py-2 text-sm font-medium text-white rounded-lg transition-colors duration-200"
+                  className="px-4 sm:px-6 py-2 text-xs sm:text-sm font-medium text-white rounded-lg transition-colors duration-200 flex-1 sm:flex-none"
                   style={{ backgroundColor: '#059669' }}
                   onMouseEnter={(e) => {
                     e.target.style.backgroundColor = '#047857';
@@ -727,7 +743,7 @@ const BlogEditor = ({ post, onSave, onCancel }) => {
                   type="submit"
                   onClick={handleSubmit}
                   disabled={loading}
-                  className="px-6 py-2 text-sm font-medium text-white rounded-lg transition-colors duration-200 flex items-center justify-center gap-2"
+                  className="px-4 sm:px-6 py-2 text-xs sm:text-sm font-medium text-white rounded-lg transition-colors duration-200 flex items-center justify-center gap-1 sm:gap-2 flex-1 sm:flex-none"
                   style={{ 
                     backgroundColor: loading ? '#6ee7b7' : '#059669'
                   }}
@@ -742,17 +758,19 @@ const BlogEditor = ({ post, onSave, onCancel }) => {
                     }
                   }}
                 >
-                {loading ? (
+                  {loading ? (
                     <>
-                      <div className="animate-spin rounded-full h-4 w-4 border-b-2 border-white"></div>
-                    Saving...
+                      <div className="animate-spin rounded-full h-3 w-3 sm:h-4 sm:w-4 border-b-2 border-white"></div>
+                      <span className="hidden sm:inline">Saving...</span>
+                      <span className="sm:hidden">Save</span>
                     </>
-                ) : (
-                  <>
-                      <Save className="w-4 h-4" />
-                    {post ? 'Update Post' : 'Create Post'}
-                  </>
-                )}
+                  ) : (
+                    <>
+                      <Save className="w-3 h-3 sm:w-4 sm:h-4" />
+                      <span className="hidden sm:inline">{post ? 'Update Post' : 'Create Post'}</span>
+                      <span className="sm:hidden">{post ? 'Update' : 'Create'}</span>
+                    </>
+                  )}
                 </button>
               )}
             </div>

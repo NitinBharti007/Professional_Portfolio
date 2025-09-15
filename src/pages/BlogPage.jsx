@@ -277,6 +277,25 @@ const BlogPage = () => {
                         }`}
                         onClick={() => navigate(`/blog/${post.slug}`)}
                       >
+                        {/* Cover Image */}
+                        {post.cover_image && (
+                          <div className={`w-full overflow-hidden ${
+                            viewMode === 'list' 
+                              ? 'h-48 sm:h-full sm:w-80 sm:flex-shrink-0' 
+                              : 'h-48'
+                          }`}>
+                            <img 
+                              src={post.cover_image} 
+                              alt={post.title}
+                              className="w-full h-full object-cover object-center group-hover:scale-105 transition-transform duration-300"
+                              style={{ objectPosition: 'center' }}
+                              onError={(e) => {
+                                e.target.style.display = 'none';
+                              }}
+                            />
+                          </div>
+                        )}
+                        
                         <div className={`${viewMode === 'list' ? 'p-6 sm:p-8 flex-1' : 'p-6 lg:p-8 flex-1 flex flex-col'} `}>
                           {/* Categories and Featured Badge */}
                           <div className="flex items-center gap-2 mb-4">

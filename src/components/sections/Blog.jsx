@@ -113,6 +113,21 @@ const Blog = () => {
                   className="relative bg-white dark:bg-gray-800 shadow-lg hover:shadow-xl transition-all duration-300 cursor-pointer rounded-2xl overflow-hidden border border-gray-100 dark:border-gray-700 hover:border-emerald-200 dark:hover:border-emerald-700 h-full flex flex-col"
                   onClick={() => navigate(`/blog/${post.slug}`)}
                 >
+                  {/* Cover Image */}
+                  {post.cover_image && (
+                    <div className="w-full h-48 overflow-hidden">
+                      <img 
+                        src={post.cover_image} 
+                        alt={post.title}
+                        className="w-full h-full object-cover object-center group-hover:scale-105 transition-transform duration-300"
+                        style={{ objectPosition: 'center' }}
+                        onError={(e) => {
+                          e.target.style.display = 'none';
+                        }}
+                      />
+                    </div>
+                  )}
+                  
                   <div className="p-6 lg:p-8 flex-1 flex flex-col">
                     {/* Categories and Featured Badge */}
                     <div className="flex items-center gap-2 mb-4">
