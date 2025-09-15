@@ -283,12 +283,11 @@ const BlogPage = () => {
                             viewMode === 'list' 
                               ? 'h-48 sm:h-full sm:w-80 sm:flex-shrink-0' 
                               : 'h-48'
-                          }`}>
+                          } bg-gray-50 dark:bg-gray-800`}>
                             <img 
                               src={post.cover_image} 
                               alt={post.title}
-                              className="w-full h-full object-cover object-center group-hover:scale-105 transition-transform duration-300"
-                              style={{ objectPosition: 'center' }}
+                              className="w-full h-full object-contain object-center transition-transform duration-300"
                               onError={(e) => {
                                 e.target.style.display = 'none';
                               }}

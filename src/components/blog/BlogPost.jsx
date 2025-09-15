@@ -8,6 +8,7 @@ import Header from '@/components/layout/Header';
 import Footer from '@/components/layout/Footer';
 import ReactMarkdown from 'react-markdown';
 import remarkGfm from 'remark-gfm';
+import remarkBreaks from 'remark-breaks';
 import rehypeHighlight from 'rehype-highlight';
 
 const BlogPost = () => {
@@ -115,8 +116,7 @@ const BlogPost = () => {
                     <img 
                       src={post.cover_image} 
                       alt={post.title}
-                      className="w-full h-48 sm:h-64 md:h-80 lg:h-96 object-cover object-center rounded-lg sm:rounded-xl shadow-lg"
-                      style={{ objectPosition: 'center' }}
+                      className="w-full max-h-96 sm:max-h-[28rem] md:max-h-[32rem] lg:max-h-[36rem] object-contain object-center rounded-lg sm:rounded-xl shadow-lg bg-gray-50 dark:bg-gray-800"
                       onError={(e) => {
                         e.target.style.display = 'none';
                       }}
@@ -209,7 +209,7 @@ const BlogPost = () => {
             <div className="max-w-4xl mx-auto">
               <div className="prose prose-lg sm:prose-xl max-w-none prose-gray dark:prose-invert prose-headings:text-gray-900 dark:prose-headings:text-white prose-p:text-gray-700 dark:prose-p:text-gray-300 prose-a:text-emerald-600 dark:prose-a:text-emerald-400 prose-strong:text-gray-900 dark:prose-strong:text-white prose-headings:font-bold prose-h1:text-2xl sm:prose-h1:text-3xl md:prose-h1:text-4xl prose-h2:text-xl sm:prose-h2:text-2xl md:prose-h2:text-3xl prose-h3:text-lg sm:prose-h3:text-xl md:prose-h3:text-2xl prose-code:text-emerald-600 dark:prose-code:text-emerald-400 prose-code:bg-gray-100 dark:prose-code:bg-gray-800 prose-pre:bg-gray-100 dark:prose-pre:bg-gray-800 prose-blockquote:border-emerald-500 prose-blockquote:bg-emerald-50 dark:prose-blockquote:bg-emerald-900/20">
                 <ReactMarkdown
-                  remarkPlugins={[remarkGfm]}
+                  remarkPlugins={[remarkGfm, remarkBreaks]}
                   rehypePlugins={[rehypeHighlight]}
                   components={{
                     // Custom styling for code blocks

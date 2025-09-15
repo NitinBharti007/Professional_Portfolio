@@ -120,7 +120,6 @@ const Blog = () => {
                         src={post.cover_image} 
                         alt={post.title}
                         className="w-full h-full object-cover object-center group-hover:scale-105 transition-transform duration-300"
-                        style={{ objectPosition: 'center' }}
                         onError={(e) => {
                           e.target.style.display = 'none';
                         }}

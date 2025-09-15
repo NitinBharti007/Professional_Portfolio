@@ -1,4 +1,10 @@
 import { useState, useEffect } from 'react';
+import MDEditor from '@uiw/react-md-editor';
+import Markdown from '@uiw/react-markdown-preview';
+import rehypeSanitize from 'rehype-sanitize';
+import remarkBreaks from 'remark-breaks';
+import '@uiw/react-md-editor/markdown-editor.css';
+import '@uiw/react-markdown-preview/markdown.css';
 import { Button } from '@/components/ui/button';
 import { Card } from '@/components/ui/card';
 import { Badge } from '@/components/ui/badge';
@@ -28,6 +34,7 @@ const BlogEditor = ({ post, onSave, onCancel }) => {
   const [currentStep, setCurrentStep] = useState(1);
   const [wordCount, setWordCount] = useState(0);
   const [charCount, setCharCount] = useState(0);
+  const [isDark, setIsDark] = useState(false);
   
   const steps = [
     { id: 1, title: 'Content', description: 'Write your post', icon: FileText },
@@ -55,6 +62,14 @@ const BlogEditor = ({ post, onSave, onCancel }) => {
 
   useEffect(() => {
     loadCategoriesAndTags();
+  }, []);
+
+  // Detect dark mode for the Markdown editor styling
+  useEffect(() => {
+    try {
+      const hasDark = document?.documentElement?.classList?.contains('dark');
+      setIsDark(!!hasDark);
+    } catch {}
   }, []);
 
   // Prevent background scroll when modal is open
@@ -304,7 +319,7 @@ const BlogEditor = ({ post, onSave, onCancel }) => {
         {/* Steps */}
         <div className="px-3 sm:px-6 py-3 sm:py-4 border-b border-gray-200 dark:border-gray-700">
           <div className="flex items-center justify-center overflow-x-auto">
-            <div className="flex items-center space-x-2 sm:space-x-4 min-w-max">
+            <div className="inline-flex items-center">
               {steps.map((step, index) => {
                 const isCompleted = currentStep > step.id;
                 const isCurrent = currentStep === step.id;
@@ -314,7 +329,7 @@ const BlogEditor = ({ post, onSave, onCancel }) => {
                   <div key={step.id} className="flex items-center">
                     <button
                       onClick={() => isClickable && goToStep(step.id)}
-                      className={`flex items-center justify-center w-8 h-8 sm:w-10 sm:h-10 rounded-full border-2 transition-all duration-200 ${
+                      className={`flex-none flex items-center justify-center w-8 h-8 sm:w-10 sm:h-10 rounded-full border-2 transition-all duration-200 ${
                         isClickable ? 'cursor-pointer' : 'cursor-not-allowed opacity-50'
                       }`}
                       style={{
@@ -355,13 +370,7 @@ const BlogEditor = ({ post, onSave, onCancel }) => {
                     
                     {index < steps.length - 1 && (
                       <div 
-                        className="h-0.5 transition-colors duration-200"
-                        style={{
-                          width: '16px',
-                          backgroundColor: isCompleted ? '#10b981' : '#d1d5db',
-                          marginLeft: '8px',
-                          marginRight: '8px'
-                        }}
+                        className={`h-0.5 w-8 sm:w-12 md:w-16 lg:w-24 mx-2 sm:mx-3 flex-none transition-colors duration-200 ${isCompleted ? 'bg-emerald-500' : 'bg-gray-300'}`}
                       />
                     )}
                   </div>
@@ -494,17 +503,26 @@ const BlogEditor = ({ post, onSave, onCancel }) => {
                         <span>{charCount} characters</span>
                       </div>
                     </div>
-              <textarea
-                name="content"
-                value={formData.content}
-                onChange={handleInputChange}
-                      rows={12}
-                      className={`w-full px-4 py-3 bg-white dark:bg-gray-700 border rounded-lg text-gray-900 dark:text-white focus:outline-none focus:ring-2 focus:ring-emerald-500 ${
-                        errors.content ? 'border-red-500' : 'border-gray-200 dark:border-gray-600'
-                      }`}
-                      placeholder="Write your post content here..."
-                required
-              />
+              <div className="rounded-lg border border-gray-200 dark:border-gray-600 bg-white dark:bg-gray-700">
+                <div className="p-2 sm:p-3" data-color-mode={isDark ? 'dark' : 'light'}>
+                  <MDEditor
+                    value={formData.content}
+                    onChange={(value) =>
+                      setFormData(prev => ({
+                        ...prev,
+                        content: value || ''
+                      }))
+                    }
+                    height={360}
+                    preview="live"
+                    visibleDragbar={false}
+                    textareaProps={{
+                      placeholder: 'Write your post content here...'
+                    }}
+                    previewOptions={{ rehypePlugins: [[rehypeSanitize]], remarkPlugins: [remarkBreaks] }}
+                  />
+                </div>
+              </div>
                     {errors.content && (
                       <p className="mt-1 text-sm text-red-600 dark:text-red-400 flex items-center gap-1">
                         <AlertCircle className="w-4 h-4" />
@@ -656,9 +674,7 @@ const BlogEditor = ({ post, onSave, onCancel }) => {
                       {formData.excerpt || 'No excerpt provided'}
                     </p>
                     <div className="prose dark:prose-invert max-w-none">
-                      <div className="whitespace-pre-wrap text-gray-700 dark:text-gray-300">
-                        {formData.content || 'No content provided'}
-                      </div>
+                      <Markdown source={formData.content || 'No content provided'} rehypePlugins={[rehypeSanitize]} remarkPlugins={[remarkBreaks]} />
                     </div>
                   </div>
                 </div>
