@@ -209,7 +209,7 @@ const Hero = () => {
                 {/* Photo with enhanced styling */}
                 <div className="w-full h-full rounded-full overflow-hidden border-2 sm:border-4 border-emerald-500/30 shadow-2xl shadow-emerald-500/20">
                   <img
-                    src="/photo.jpg"
+                    src="/PassportPhoto.png"
                     alt="Nitin Bharti - Software Developer"
                     className="w-full h-full object-cover"
                   />
